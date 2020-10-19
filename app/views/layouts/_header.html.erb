@@ -1,0 +1,18 @@
+<header class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <div class="header-contents">
+      <div class="header-title">
+        <%= link_to "TasQ", root_path, class: "navbar-brand"%>
+      </div>
+      <div class="header-buttons">
+        <%# if user_signed_in? %>
+          <%= link_to "ログアウト", "#", class: "btn btn-light header-btn"%>
+        <%# else %>
+          <%= link_to "新規登録", "#", class: "btn btn-light header-btn" %>
+          <%= link_to "ログイン", "#", class: "btn btn-light header-btn" %>
+        <%# end %>
+      </div>
+    </div>
+  </div>
+
+</header>
