@@ -6,10 +6,16 @@
       </div>
       <div class="header-buttons">
         <%# if user_signed_in? %>
-          <%= link_to "ログアウト", "#", class: "btn btn-light header-btn"%>
+          <%= link_to "#", class: "btn btn-light header-btn" do %>
+            ログアウト <i class="fas fa-sign-out-alt"></i>
+          <% end %>
         <%# else %>
-          <%= link_to "新規登録", "#", class: "btn btn-light header-btn" %>
-          <%= link_to "ログイン", "#", class: "btn btn-light header-btn" %>
+          <%= link_to "#", class: "btn btn-light header-btn" do %>
+            新規登録 <i class="fas fa-user-plus"></i>
+          <% end %>
+          <%= link_to "#", class: "btn btn-light header-btn" do %>
+            ログイン <i class="fas fa-sign-in-alt"></i>
+          <% end %>
         <%# end %>
       </div>
     </div>
