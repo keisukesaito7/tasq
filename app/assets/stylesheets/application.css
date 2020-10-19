@@ -15,7 +15,7 @@
  */
 
  body {
-   padding-top: 56px;
+   padding-top: calc(56px + 30px);
  }
 
  .header-contents {
