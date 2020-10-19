@@ -4,10 +4,11 @@
     <title>TasQ</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <!-- assets/stylesheets内部のCSSが読み込まれるように -->
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!-- WebpackerがCSSを読み込めるように(Bootstrap用) -->
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="assets/application.css">
   </head>
 
   <body>
