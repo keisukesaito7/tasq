@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="task-info-wrapper">
+    <div class="each-task-info">
+      <h2><%= @task.title %></h2>
+      <h4>Purpose: <%= @task.purpose %></h4>
+      <h4>Goal: <%= @task.goal %></h4>
+    </div>
+    <div class="task-title-buttons">
+      <%= link_to "#", class: "btn btn-primary" do %>
+        <i class="fas fa-edit"></i>
+      <% end %>
+      <%= link_to "#", class: "btn btn-secondary" do %>
+        <i class="fas fa-trash-alt"></i>
+      <% end %>
+    </div>
+  </div>
+</div>

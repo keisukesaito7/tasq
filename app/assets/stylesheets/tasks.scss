@@ -1,3 +1,4 @@
+// tasks/index.html.erb
 .tasks-index-title {
   border-bottom: 1px solid lightgrey;
   margin-bottom: 10px;
@@ -9,6 +10,19 @@
   flex-wrap: wrap;
 }
 
-.card-margin {
+// tasks/_task.html.erb
+.card-config {
   margin: 0 16px 16px 0;
+}
+
+.card-body:hover {
+  background-color: lightgrey;
+  transition: 0.5s;
+}
+
+// tasks/show.html.erb
+.task-info-wrapper {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid darkgray;
 }
