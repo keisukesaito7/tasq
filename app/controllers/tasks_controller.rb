@@ -10,11 +10,11 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
-  def craete
+  def create
     @task = Task.new(task_params)
     if @task.valid?
       @task.save
-      redirect_to :index
+      redirect_to tasks_path
     else
       render :new
     end
@@ -26,7 +26,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :purpose, :goal)
+    params.require(:task).permit(:title, :purpose, :goal).merge(user_id: @user.id)
   end
   
 end
