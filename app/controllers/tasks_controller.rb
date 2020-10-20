@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :new, :create, :show,:edit, :update]
-  before_action :set_task, only: [:show, :edit, :update]
-  before_action :check_person, only: [:show, :edit, :update]
+  before_action :authenticate_user!
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :check_person, only: [:show, :edit, :update, :destroy]
 
   def index
     @tasks = current_user.tasks.order('created_at DESC')
@@ -27,6 +27,14 @@ class TasksController < ApplicationController
   def update
     if @task.update(task_params)
       redirect_to task_path(@task)
+    else
+      render :show
+    end
+  end
+
+  def destroy
+    if @task.destroy
+      redirect_to tasks_path
     else
       render :show
     end
