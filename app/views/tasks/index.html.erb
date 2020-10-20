@@ -1,37 +1,13 @@
   <div class="container">
-
+    <div class="tasks-index-title">
+      <i class="fas fa-list-alt"></i> タスク一覧
+    </div>
+    <%= link_to new_task_path do %>
+      <i class="fas fa-plus-circle"></i> 新規作成
+    <% end %>
     <%# タスク一覧表示部分 %>
-    <div class="tasks-index-title"><i class="fas fa-list-alt"></i> タスク一覧</div>
     <div class="tasks-wrapper">
-      <div class="card card-margin" style="width: 16rem;">
-        <div class="card-body">
-          <h5 class="card-title">Funahashi2012論文</h5>
-          <p class="card-text">まとめる</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-      <div class="card card-margin" style="width: 16rem;">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">2</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-      <div class="card card-margin" style="width: 16rem;">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">3</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-      <div class="card card-margin" style="width: 16rem;">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">4</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
+      <%= render partial: 'task', collection: @tasks %>
     </div>
     <%# /タスク一覧表示部分 %>
-
   </div>
