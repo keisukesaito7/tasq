@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :new, :create]
+  before_action :authenticate_user!, only: [:index, :new, :create, :show]
   before_action :set_task, only: [:show]
+  before_action :check_person, only: [:show]
 
   def index
     @tasks = current_user.tasks.order('created_at DESC')
@@ -30,6 +31,10 @@ class TasksController < ApplicationController
 
   def set_task
     @task = Task.find(params[:id])
+  end
+
+  def check_person
+    redirect_to tasks_path if @task.user.id != current_user.id
   end
   
 end
