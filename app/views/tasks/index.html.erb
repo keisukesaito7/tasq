@@ -1,10 +1,13 @@
   <div class="container">
-
+    <div class="tasks-index-title">
+      <i class="fas fa-list-alt"></i> タスク一覧
+    </div>
+    <%= link_to new_task_path do %>
+      <i class="fas fa-plus-circle"></i> 新規作成
+    <% end %>
     <%# タスク一覧表示部分 %>
-    <div class="tasks-index-title"><i class="fas fa-list-alt"></i> タスク一覧</div>
     <div class="tasks-wrapper">
       <%= render partial: 'task', collection: @tasks %>
     </div>
     <%# /タスク一覧表示部分 %>
-
   </div>
