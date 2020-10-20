@@ -6,15 +6,31 @@
       </div>
       <div class="header-buttons">
         <% if user_signed_in? %>
-          <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-light header-btn" do %>
-            ログアウト <i class="fas fa-sign-out-alt"></i>
-          <% end %>
+          <div class="btn-group">
+            <button type="button" class="btn btn-light header-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user"></i> <%= current_user.nickname %>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <%= link_to '#', class: "dropdown-item" do %>
+                <i class="fas fa-user-circle"></i> マイページへ
+              <% end %>
+              <%= link_to '#', class: "dropdown-item" do %>
+                <i class="fas fa-user-edit"></i> アカウント情報編集
+              <% end %>
+              <%= link_to '#', class: "dropdown-item" do %>
+              <% end %>
+              <div class="dropdown-divider"></div>
+              <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+                <i class="fas fa-sign-out-alt"></i> ログアウト
+              <% end %>
+            </div>
+          </div>
         <% else %>
           <%= link_to new_user_registration_path, class: "btn btn-light header-btn" do %>
-            新規登録 <i class="fas fa-user-plus"></i>
+            <i class="fas fa-user-plus"></i> 新規登録
           <% end %>
           <%= link_to new_user_session_path, class: "btn btn-light header-btn" do %>
-            ログイン <i class="fas fa-sign-in-alt"></i>
+            <i class="fas fa-sign-in-alt"></i> ログイン
           <% end %>
         <% end %>
       </div>
