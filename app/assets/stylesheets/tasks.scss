@@ -9,6 +9,11 @@
   flex-wrap: wrap;
 }
 
-.card-margin {
+.card-config {
   margin: 0 16px 16px 0;
+}
+
+.card-body:hover {
+  background-color: lightgrey;
+  transition: 0.5s;
 }
