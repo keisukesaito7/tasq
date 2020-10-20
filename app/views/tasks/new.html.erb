@@ -2,6 +2,7 @@
   <div class="new-task-form"></div>
 
     <%= form_with model: @task, local: true do |f| %>
+      <%= render partial: '/shared/error_messages', locals: { model: @task } %>
       <div class="field">
         <%= f.label :title %>
         <%= f.text_field :title, autofocus: true %>
