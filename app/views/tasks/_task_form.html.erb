@@ -1,0 +1,21 @@
+<%= form_with model: task, local: true do |f| %>
+  <%= render partial: '/shared/error_messages', locals: { model: task } %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :purpose %>
+    <%= f.text_field :purpose %>
+  </div>
+
+  <div class="field">
+    <%= f.label :goal %>
+    <%= f.text_field :goal %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "#{submit_text}" %>
+  </div>
+<% end %>

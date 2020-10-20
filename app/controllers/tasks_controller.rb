@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :new, :create, :show]
-  before_action :set_task, only: [:show]
-  before_action :check_person, only: [:show]
+  before_action :authenticate_user!, only: [:index, :new, :create, :show,:edit, :update]
+  before_action :set_task, only: [:show, :edit, :update]
+  before_action :check_person, only: [:show, :edit, :update]
 
   def index
     @tasks = current_user.tasks.order('created_at DESC')
@@ -21,12 +21,20 @@ class TasksController < ApplicationController
     end
   end
 
-  def show
+  def edit
+  end
+
+  def update
+    if @task.update(task_params)
+      redirect_to task_path(@task)
+    else
+      render :show
+    end
   end
 
   private
   def task_params
-    params.require(:task).permit(:title, :purpose, :goal).merge(user_id: @user.id)
+    params.require(:task).permit(:title, :purpose, :goal).merge(user_id: current_user.id)
   end
 
   def set_task
