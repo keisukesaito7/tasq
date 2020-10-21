@@ -21,6 +21,10 @@ class TasksController < ApplicationController
     end
   end
 
+  def show
+    @commits = @task.commits.order("created_at DESC")
+  end
+
   def edit
   end
 

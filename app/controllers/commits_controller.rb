@@ -8,7 +8,6 @@ class CommitsController < ApplicationController
   end
 
   def create
-    binding.pry
     @commit = Commit.new(commit_params)
     if @commit.valid?
       @commit.save
