@@ -24,11 +24,16 @@
   <%# コミットを一覧表示 %>
   <div class="commit-log-wrapper">
     <h2>Commit Log</h2>
+    <%= link_to new_task_commit_path(@task) do %>
+      <i class="fas fa-plus-circle"></i> 新規作成
+    <% end %>
     <ul class="list-group">
       <% @commits.each do |commit| %>
-        <li class="list-group-item">
-          <%= commit.content %>
-        </li>
+        <div class="add-margin">
+          <li class="list-group-item commit-over-flow-wrap">
+            <%= commit.content %>
+          </li>
+        </div>
       <% end %>
     </ul>
   </div>
