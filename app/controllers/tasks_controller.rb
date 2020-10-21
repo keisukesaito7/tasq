@@ -41,6 +41,7 @@ class TasksController < ApplicationController
   end
 
   private
+
   def task_params
     params.require(:task).permit(:title, :purpose, :goal).merge(user_id: current_user.id)
   end
@@ -52,5 +53,4 @@ class TasksController < ApplicationController
   def check_person
     redirect_to tasks_path if @task.user.id != current_user.id
   end
-  
 end

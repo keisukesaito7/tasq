@@ -5,6 +5,7 @@ class HomeController < ApplicationController
   end
 
   private
+
   def check_signin
     redirect_to tasks_path if user_signed_in?
   end

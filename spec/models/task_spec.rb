@@ -31,7 +31,7 @@ RSpec.describe Task, type: :model do
     it 'userが紐づいていないと保存できない' do
       @task.user = nil
       @task.valid?
-      expect(@task.errors.full_messages).to include("User must exist")
+      expect(@task.errors.full_messages).to include('User must exist')
     end
   end
 end

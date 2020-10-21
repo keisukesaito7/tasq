@@ -27,7 +27,7 @@ RSpec.describe User, type: :model do
       new_user.email = @user.email
       @user.save
       new_user.valid?
-      expect(new_user.errors.full_messages).to include("Email has already been taken")
+      expect(new_user.errors.full_messages).to include('Email has already been taken')
     end
 
     it 'passwordが空だと保存できない' do
@@ -37,20 +37,20 @@ RSpec.describe User, type: :model do
     end
 
     it 'passwordが5文字以下だと保存できない' do
-      @user.password = "aaaaa"
+      @user.password = 'aaaaa'
       @user.password_confirmation = @user.password
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+      expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
 
     it 'password_confirmationが空だと保存できない' do
-      @user.password_confirmation = ""
+      @user.password_confirmation = ''
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
 
     it 'password_confirmationがpasswordと一致しないと保存できない' do
-      @user.password_confirmation = "aaaaaa"
+      @user.password_confirmation = 'aaaaaa'
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
