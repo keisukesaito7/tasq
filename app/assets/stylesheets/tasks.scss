@@ -25,6 +25,7 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid darkgray;
+  padding-bottom: 10px;
 }
 
 // コミット一覧
@@ -41,7 +42,7 @@
   overflow-wrap: break-word;
 }
 
-// 各commitが囲まれるpタグのmarginを消す(bootstrapのreset)
-.commit-over-flow-wrap > p {
+// simple_formのpタグのmarginを消す(bootstrapのreset)
+.each-task-info > h5 > p, .commit-over-flow-wrap > p {
   margin: 0;
 }
