@@ -12,16 +12,12 @@
       <%= link_to edit_task_path(@task), class: "btn btn-primary" do %>
         <i class="fas fa-edit"></i>
       <% end %>
-      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#destroyModal">
+      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#taskDestroyModal">
         <i class="fas fa-trash-alt"></i>
       </button>
     </div>
   </div>
   <%# /タスクの情報を表示 %>
-
-  <%# destroyモーダル %>
-  <%= render partial: 'task_destroy', locals: { task: @task } %>
-  <%#/ モーダル %>
 
   <%# コミットを一覧表示 %>
   <div class="commit-log-wrapper">
@@ -36,5 +32,9 @@
     </ul>
   </div>
   <%# /コミットを表示 %>
+
+  <%# destroyモーダル %>
+  <%= render partial: '/shared/destroy_modal', locals: { id: "taskDestroyModal", target: "タスク", url: task_path(@task) } %>
+  <%#/ モーダル %>
 
 </div>

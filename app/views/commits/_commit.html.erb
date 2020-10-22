@@ -2,9 +2,11 @@
   <li class="list-group-item commit-over-flow-wrap">
     <p style="color: gray; font-size: 15px;">
       <%= commit.created_at %>
-      <%= link_to "#", style: "color: gray" do %><i class="fas fa-trash-alt float-right"></i><% end %>
-      <%= link_to "#", style: "color: gray" do %><i class="fas fa-edit float-right" style="margin-right: 5px;"></i><% end %>
+      <%= link_to "#", "data-toggle": "modal", "data-Target": "#commitDestroyModal#{commit.id}", style: "color: gray" do %><i class="fas fa-trash-alt float-right"></i><% end %>
+      <%= link_to edit_task_commit_path(commit.task, commit) do %><i class="fas fa-edit float-right" style="margin-right: 5px;"></i><% end %>
     </p>
     <%= simple_format(h(commit.content)) %>
   </li>
 </div>
+
+<%= render partial: '/shared/destroy_modal', locals: { id: "commitDestroyModal#{commit.id}", target: "コミット", url: task_commit_path(commit.task, commit) } %>
