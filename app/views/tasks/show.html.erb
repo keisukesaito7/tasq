@@ -38,6 +38,11 @@
     <%# メッセージフォームを表示%>
     <div class="message-wrapper">
       <h2>Message Form</h2>
+      <%= form_with model: [@task, @message], local: true do |f| %>
+        <%= f.label :text %>
+        <%= f.text_area :text %>
+        <%= f.submit id: "message-submit" %>
+      <% end %>
     </div>
     <%# /メッセージフォームを表示%>
   </div>

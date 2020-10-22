@@ -23,6 +23,7 @@ class TasksController < ApplicationController
 
   def show
     @commits = @task.commits.order("created_at DESC")
+    @message = Message.new
   end
 
   def edit
