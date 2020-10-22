@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_025955) do
+ActiveRecord::Schema.define(version: 2020_10_22_093152) do
 
   create_table "commits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "content", null: false
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2020_10_21_025955) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["task_id"], name: "index_commits_on_task_id"
     t.index ["user_id"], name: "index_commits_on_user_id"
+  end
+
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "text", null: false
+    t.bigint "user_id"
+    t.bigint "task_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_id"], name: "index_messages_on_task_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -47,5 +57,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_025955) do
 
   add_foreign_key "commits", "tasks"
   add_foreign_key "commits", "users"
+  add_foreign_key "messages", "tasks"
+  add_foreign_key "messages", "users"
   add_foreign_key "tasks", "users"
 end
