@@ -19,19 +19,28 @@
   </div>
   <%# /タスクの情報を表示 %>
 
-  <%# コミットを一覧表示 %>
-  <div class="commit-log-wrapper">
-    <h2>Commit Log</h2>
-    <%= link_to new_task_commit_path(@task) do %>
-      <i class="fas fa-plus-circle"></i> 新規作成
-    <% end %>
-    <ul class="list-group">
-      <%# 各コミット%>
-      <%= render partial: '/commits/commit', collection: @commits %>
-      <%# /各コミット%>
-    </ul>
+  <div class="commit-log-and-message-wrapper">
+
+    <%# コミットを一覧表示 %>
+    <div class="commit-log-wrapper">
+      <h2>Commit Log</h2>
+      <%= link_to new_task_commit_path(@task) do %>
+        <i class="fas fa-plus-circle"></i> 新規作成
+      <% end %>
+      <ul class="list-group">
+        <%# 各コミット%>
+        <%= render partial: '/commits/commit', collection: @commits %>
+        <%# /各コミット%>
+      </ul>
+    </div>
+    <%# /コミットを表示 %>
+
+    <%# メッセージフォームを表示%>
+    <div class="message-wrapper">
+      <h2>Message Form</h2>
+    </div>
+    <%# /メッセージフォームを表示%>
   </div>
-  <%# /コミットを表示 %>
 
   <%# destroyモーダル %>
   <%= render partial: '/shared/destroy_modal', locals: { id: "taskDestroyModal", target: "タスク", url: task_path(@task) } %>

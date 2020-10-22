@@ -1,3 +1,26 @@
-// Place all the styles related to the commits controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// コミットログ＆メッセージ
+.commit-log-and-message-wrapper {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+// コミット一覧
+.commit-log-wrapper {
+  background-color: skyblue;
+  width: 65%;
+}
+
+// コミット文が長いときは折り返す
+.commit-over-flow-wrap {
+  overflow-wrap: break-word;
+  p {
+    margin: 0;
+  }
+}
+
+// メッセージ部分
+.message-wrapper {
+  background-color: darkgray;
+  width: 350px;
+}
