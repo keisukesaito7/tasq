@@ -46,6 +46,11 @@
       <%# /メッセージフォーム %>
       <%# 埋め込み先リスト %>
       <div id="message-list">
+        <ul>
+          <% @messages.each do |message| %>
+            <li><%= "#{message.text} by #{message.user.nickname}" %></li>
+          <% end %>
+        </ul>
       </div>
       <%# /埋め込み先リスト %>
     </div>
