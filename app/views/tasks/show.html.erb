@@ -33,7 +33,11 @@
       <% @commits.each do |commit| %>
         <div class="add-margin-bottom-5px">
           <li class="list-group-item commit-over-flow-wrap">
-            <p style="color: gray; font-size: 15px;"><%= commit.created_at %></p>
+            <p style="color: gray; font-size: 15px;">
+              <%= commit.created_at %>
+              <%= link_to "#", style: "color: gray" do %><i class="fas fa-trash-alt float-right"></i><% end %>
+              <%= link_to "#", style: "color: gray" do %><i class="fas fa-edit float-right" style="margin-right: 5px;"></i><% end %>
+            </p>
             <%= simple_format(h(commit.content)) %>
           </li>
         </div>
