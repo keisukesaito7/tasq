@@ -1,9 +1,12 @@
 <div class="container">
+  <%# タスクの情報を表示 %>
   <div class="task-info-wrapper">
     <div class="each-task-info">
       <h2><%= @task.title %></h2>
-      <h4>Purpose: <%= @task.purpose %></h4>
-      <h4>Goal: <%= @task.goal %></h4>
+      <h4>Purpose</h4>
+      <h5><%= @task.purpose %><h5>
+      <h4>Goal</h4>
+      <h5><%= simple_format(h(@task.goal)) %></h5>
     </div>
     <div class="task-title-buttons">
       <%= link_to edit_task_path(@task), class: "btn btn-primary" do %>
@@ -14,7 +17,24 @@
       </button>
     </div>
   </div>
+  <%# /タスクの情報を表示 %>
+
   <%# destroyモーダル %>
   <%= render partial: 'task_destroy', locals: { task: @task } %>
   <%#/ モーダル %>
+
+  <%# コミットを一覧表示 %>
+  <div class="commit-log-wrapper">
+    <h2>Commit Log</h2>
+    <%= link_to new_task_commit_path(@task) do %>
+      <i class="fas fa-plus-circle"></i> 新規作成
+    <% end %>
+    <ul class="list-group">
+      <%# 各コミット%>
+      <%= render partial: '/commits/commit', collection: @commits %>
+      <%# /各コミット%>
+    </ul>
+  </div>
+  <%# /コミットを表示 %>
+
 </div>

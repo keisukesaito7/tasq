@@ -21,6 +21,10 @@ class TasksController < ApplicationController
     end
   end
 
+  def show
+    @commits = @task.commits.order("created_at DESC")
+  end
+
   def edit
   end
 
@@ -51,6 +55,6 @@ class TasksController < ApplicationController
   end
 
   def check_person
-    redirect_to tasks_path if @task.user.id != current_user.id
+    redirect_to tasks_path if @task.user_id != current_user.id
   end
 end
