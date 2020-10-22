@@ -33,10 +33,15 @@
   width: 70%;
 }
 
-.add-margin {
+.add-margin-bottom-5px {
   margin-bottom: 5px;
 }
 
 .commit-over-flow-wrap {
   overflow-wrap: break-word;
+}
+
+// 各commitが囲まれるpタグのmarginを消す(bootstrapのreset)
+.commit-over-flow-wrap > p {
+  margin: 0;
 }

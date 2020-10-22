@@ -29,9 +29,9 @@
     <% end %>
     <ul class="list-group">
       <% @commits.each do |commit| %>
-        <div class="add-margin">
+        <div class="add-margin-bottom-5px">
           <li class="list-group-item commit-over-flow-wrap">
-            <%= commit.content %>
+            <%= simple_format(h(commit.content)) %>
           </li>
         </div>
       <% end %>
