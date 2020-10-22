@@ -2,8 +2,8 @@
   <li class="list-group-item commit-over-flow-wrap">
     <p style="color: gray; font-size: 15px;">
       <%= commit.created_at %>
-      <%= link_to "#", style: "color: gray" do %><i class="fas fa-trash-alt float-right"></i><% end %>
-      <%= link_to edit_task_commit_path(commit.task, commit), style: "color: gray" do %><i class="fas fa-edit float-right" style="margin-right: 5px;"></i><% end %>
+      <%= link_to task_commit_path(commit.task, commit), style: "color: gray", method: :delete do %><i class="fas fa-trash-alt float-right"></i><% end %>
+      <%= link_to edit_task_commit_path(commit.task, commit) do %><i class="fas fa-edit float-right" style="margin-right: 5px;"></i><% end %>
     </p>
     <%= simple_format(h(commit.content)) %>
   </li>

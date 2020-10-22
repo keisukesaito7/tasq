@@ -1,8 +1,8 @@
 class CommitsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :craete, :edit, :update]
-  before_action :set_task, only: [:new, :create, :edit, :update]
-  before_action :set_commit, only: [:edit, :update]
-  before_action :check_person, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :craete, :edit, :update, :destroy]
+  before_action :set_task, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_commit, only: [:edit, :update, :destroy]
+  before_action :check_person, only: [:new, :create, :edit, :update, :destroy]
 
   def new
     @commit = Commit.new
@@ -26,6 +26,14 @@ class CommitsController < ApplicationController
       redirect_to task_path(@task)
     else
       render :edit
+    end
+  end
+
+  def destroy
+    if @commit.destroy
+      redirect_to task_path(@task)
+    else
+      redirect_to task_path(@task)
     end
   end
 
