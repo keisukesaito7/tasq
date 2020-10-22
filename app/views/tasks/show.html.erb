@@ -35,16 +35,21 @@
     </div>
     <%# /コミットを表示 %>
 
-    <%# メッセージフォームを表示%>
+    <%# メッセージ部%>
     <div class="message-wrapper">
+      <%# メッセージフォーム %>
       <h2>Message Form</h2>
-      <%= form_with model: [@task, @message], local: true do |f| %>
-        <%= f.label :text %>
-        <%= f.text_area :text %>
+      <%= form_with model: [@task, @message], id: "message-form" do |f| %>
+        <%= f.text_area :text, style: "width: 90%" %>
         <%= f.submit id: "message-submit" %>
       <% end %>
+      <%# /メッセージフォーム %>
+      <%# 埋め込み先リスト %>
+      <div id="message-list">
+      </div>
+      <%# /埋め込み先リスト %>
     </div>
-    <%# /メッセージフォームを表示%>
+    <%# /メッセージ部%>
   </div>
 
   <%# destroyモーダル %>
