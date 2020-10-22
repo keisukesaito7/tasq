@@ -33,6 +33,7 @@
       <% @commits.each do |commit| %>
         <div class="add-margin-bottom-5px">
           <li class="list-group-item commit-over-flow-wrap">
+            <p style="color: gray; font-size: 15px;"><%= commit.created_at %></p>
             <%= simple_format(h(commit.content)) %>
           </li>
         </div>
