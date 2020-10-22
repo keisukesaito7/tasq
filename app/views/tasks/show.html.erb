@@ -30,18 +30,9 @@
       <i class="fas fa-plus-circle"></i> 新規作成
     <% end %>
     <ul class="list-group">
-      <% @commits.each do |commit| %>
-        <div class="add-margin-bottom-5px">
-          <li class="list-group-item commit-over-flow-wrap">
-            <p style="color: gray; font-size: 15px;">
-              <%= commit.created_at %>
-              <%= link_to "#", style: "color: gray" do %><i class="fas fa-trash-alt float-right"></i><% end %>
-              <%= link_to "#", style: "color: gray" do %><i class="fas fa-edit float-right" style="margin-right: 5px;"></i><% end %>
-            </p>
-            <%= simple_format(h(commit.content)) %>
-          </li>
-        </div>
-      <% end %>
+      <%# 各コミット%>
+      <%= render partial: '/commits/commit', collection: @commits %>
+      <%# /各コミット%>
     </ul>
   </div>
   <%# /コミットを表示 %>
