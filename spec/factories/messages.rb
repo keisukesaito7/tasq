@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :commit do
-    content { Faker::Lorem.sentence }
+  factory :message do
+    text { Faker::Lorem.sentence }
 
     association :user
     association :task

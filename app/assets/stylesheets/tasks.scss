@@ -28,21 +28,9 @@
   padding-bottom: 10px;
 }
 
-// コミット一覧
-.commit-log-wrapper {
-  padding-top: 20px;
-  width: 70%;
-}
 
-.add-margin-bottom-5px {
-  margin-bottom: 5px;
-}
-
-.commit-over-flow-wrap {
-  overflow-wrap: break-word;
-}
 
 // simple_formのpタグのmarginを消す(bootstrapのreset)
-.each-task-info > h5 > p, .commit-over-flow-wrap > p {
+.each-task-info > h5 > p {
   margin: 0;
 }

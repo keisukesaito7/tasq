@@ -19,19 +19,43 @@
   </div>
   <%# /タスクの情報を表示 %>
 
-  <%# コミットを一覧表示 %>
-  <div class="commit-log-wrapper">
-    <h2>Commit Log</h2>
-    <%= link_to new_task_commit_path(@task) do %>
-      <i class="fas fa-plus-circle"></i> 新規作成
-    <% end %>
-    <ul class="list-group">
-      <%# 各コミット%>
-      <%= render partial: '/commits/commit', collection: @commits %>
-      <%# /各コミット%>
-    </ul>
+  <div class="commit-log-and-message-wrapper">
+
+    <%# コミットを一覧表示 %>
+    <div class="commit-log-wrapper">
+      <h2>Commit Log</h2>
+      <%= link_to new_task_commit_path(@task) do %>
+        <i class="fas fa-plus-circle"></i> 新規作成
+      <% end %>
+      <ul class="list-group">
+        <%# 各コミット%>
+        <%= render partial: '/commits/commit', collection: @commits %>
+        <%# /各コミット%>
+      </ul>
+    </div>
+    <%# /コミットを表示 %>
+
+    <%# メッセージ部%>
+    <div class="message-wrapper">
+      <%# メッセージフォーム %>
+      <h2>Message Form</h2>
+      <%= form_with model: [@task, @message], id: "message-form" do |f| %>
+        <%= f.text_area :text, style: "width: 90%" %>
+        <%= f.submit id: "message-submit" %>
+      <% end %>
+      <%# /メッセージフォーム %>
+      <%# 埋め込み先リスト %>
+      <div id="message-list">
+        <ul>
+          <% @messages.each do |message| %>
+            <li><%= "#{message.text} by #{message.user.nickname}" %></li>
+          <% end %>
+        </ul>
+      </div>
+      <%# /埋め込み先リスト %>
+    </div>
+    <%# /メッセージ部%>
   </div>
-  <%# /コミットを表示 %>
 
   <%# destroyモーダル %>
   <%= render partial: '/shared/destroy_modal', locals: { id: "taskDestroyModal", target: "タスク", url: task_path(@task) } %>
