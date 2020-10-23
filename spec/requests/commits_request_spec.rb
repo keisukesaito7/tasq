@@ -1,5 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe "Commits", type: :request do
-
+RSpec.describe 'Commits', type: :request do
 end

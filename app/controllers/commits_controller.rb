@@ -54,5 +54,4 @@ class CommitsController < ApplicationController
   def check_person
     redirect_to tasks_path if @task.user_id != current_user.id
   end
-
 end

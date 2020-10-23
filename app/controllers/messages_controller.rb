@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
 
   def create
     message = Message.create(message_params)
-    render json: { message: message}
+    render json: { message: message }
   end
 
   private

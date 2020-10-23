@@ -22,9 +22,9 @@ class TasksController < ApplicationController
   end
 
   def show
-    @commits = @task.commits.order("created_at DESC")
+    @commits = @task.commits.order('created_at DESC')
     @message = Message.new
-    @messages = @task.messages.includes(:user).order("created_at DESC")
+    @messages = @task.messages.includes(:user).order('created_at DESC')
   end
 
   def edit

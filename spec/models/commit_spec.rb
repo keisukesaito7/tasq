@@ -19,13 +19,13 @@ RSpec.describe Commit, type: :model do
     it 'userが紐付いていないと保存できない' do
       @commit.user = nil
       @commit.valid?
-      expect(@commit.errors.full_messages).to include("User must exist")
+      expect(@commit.errors.full_messages).to include('User must exist')
     end
 
     it 'taskが紐付いていないと保存できない' do
       @commit.task = nil
       @commit.valid?
-      expect(@commit.errors.full_messages).to include("Task must exist")
+      expect(@commit.errors.full_messages).to include('Task must exist')
     end
   end
 end
