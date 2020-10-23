@@ -47,7 +47,7 @@
 }
 
 // コミット文が長いときは折り返す
-.commit-over-flow-wrap {
+.commit-over-flow-wrap, .message-over-flow-wrap {
   overflow-wrap: break-word;
   p {
     margin: 0;

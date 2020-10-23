@@ -18,7 +18,7 @@ function message () {
       const list = document.getElementById("message-list");
       const formText = document.getElementById("message_text");
       const HTML = `
-        <div>${message.text}</div>
+        <li class="message-over-flow-wrap">${message.text}</li>
         `;
       list.insertAdjacentHTML("afterbegin", HTML);
       formText.value = "";

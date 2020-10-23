@@ -45,10 +45,10 @@
       <% end %>
       <%# /メッセージフォーム %>
       <%# 埋め込み先リスト %>
-      <div id="message-list">
-        <ul>
+      <div>
+        <ul id="message-list">
           <% @messages.each do |message| %>
-            <li><%= "#{message.text} by #{message.user.nickname}" %></li>
+            <li class="message-over-flow-wrap"><%= "#{message.text} by #{message.user.nickname}" %></li>
           <% end %>
         </ul>
       </div>
