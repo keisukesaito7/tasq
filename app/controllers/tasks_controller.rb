@@ -3,10 +3,6 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :check_person, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @tasks = current_user.tasks.order('created_at DESC')
-  end
-
   def new
     @task = Task.new
   end
@@ -15,7 +11,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.valid?
       @task.save
-      redirect_to tasks_path
+      redirect_to root_path
     else
       render :new
     end
@@ -40,7 +36,7 @@ class TasksController < ApplicationController
 
   def destroy
     if @task.destroy
-      redirect_to tasks_path
+      redirect_to root_path
     else
       render :show
     end
@@ -57,6 +53,6 @@ class TasksController < ApplicationController
   end
 
   def check_person
-    redirect_to tasks_path if @task.user_id != current_user.id
+    redirect_to root_path if @task.user_id != current_user.id
   end
 end

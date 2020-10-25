@@ -1,8 +1,7 @@
 <div class="container">
-  <div class="welcome">
-    <h1>Home#top</h1>
-    <p>Find me in app/views/home/top.html.erb</p>
-    <i class="fab fa-accessible-icon"></i>
-    <button type="button" class="btn btn-secondary">Secondary</button>
-  </div>
+  <% if user_signed_in? %>
+    <%= render "sign_in_top" %>
+  <% else %>
+    <%= render"sign_out_top" %>
+  <% end %>
 </div>
