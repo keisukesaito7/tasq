@@ -23,6 +23,14 @@
     <%#レビュアーー情報を表示 %>
     <div class="reviewer-wrapper">
       <h4>Reviewer</h4>
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Button with data-target
+      </button>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        </div>
+      </div>
     </div>
 
     <%# メッセージ部分%>
@@ -38,7 +46,7 @@
       </div>
       <%# /埋め込み先リスト %>
       <%# メッセージフォーム %>
-      <%= form_with model: [@task, @message], id: "message-form" do |f| %>
+      <%= form_with model: [@task, @message], id: "message-form", local: true do |f| %>
         <%= f.text_area :text, style: "width: 100%", placeholder: "レビューや質問はこちらから！" %>
         <%= f.submit id: "message-submit" %>
       <% end %>

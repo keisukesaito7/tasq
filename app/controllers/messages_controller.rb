@@ -3,8 +3,16 @@ class MessagesController < ApplicationController
   before_action :set_task, only: [:create]
 
   def create
-    message = Message.create(message_params)
-    render json: { message: message }
+    @message = Message.new(message_params)
+    if @message.valid?
+      @message.save
+      redirect_to task_path(@task)
+    else
+      @commit = Commit.new
+      @commits = @task.commits.order('created_at DESC')
+      @messages = @task.messages.includes(:user).order('created_at DESC')
+      render "/tasks/show"
+    end
   end
 
   private

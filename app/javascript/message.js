@@ -11,8 +11,13 @@ function message () {
 
     XHR.onload = () => {
       if (XHR.status != 200) {
-        alert(`Error ${XHR.status}: ${XHR.statusText} `);
-        return null;
+        if (XHR.status == 204) {
+          alert(`メッセージが空です`);
+          return null;
+        } else {
+          alert(`Error ${XHR.status}: ${XHR.statusText} `);
+          return null;
+        }
       }
       const message = XHR.response.message;
       const list = document.getElementById("message-list");
