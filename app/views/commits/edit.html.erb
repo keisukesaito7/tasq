@@ -1,1 +1,14 @@
-<%= render partial: 'commit_form', locals: { task: @task, commit: @commit, submit_text: "投稿" } %>
+<div class="container">
+  <div class="container">
+    <%= form_with model: [@task, @commit], local: true do |f| %>
+      <%= render partial: '/shared/error_messages', locals: { model: @commit } %>
+      <div class="field">
+        <%= f.label :content %>
+        <%= f.text_area :content, autofocus: true %>
+      </div>
+      <button class="btn btn-primary">
+        更新
+      </button>
+    <% end %>
+  </div>
+</div>

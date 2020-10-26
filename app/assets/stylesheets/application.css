@@ -18,6 +18,10 @@
    padding-top: calc(56px + 30px);
  }
 
+ header {
+   background-color: #003366;
+ }
+
  .header-contents {
    width: 100%;
    display: flex;

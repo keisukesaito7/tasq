@@ -1,12 +1,8 @@
 class CommitsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :craete, :edit, :update, :destroy]
-  before_action :set_task, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:craete, :edit, :update, :destroy]
+  before_action :set_task, only: [:create, :edit, :update, :destroy]
   before_action :set_commit, only: [:edit, :update, :destroy]
-  before_action :check_person, only: [:new, :create, :edit, :update, :destroy]
-
-  def new
-    @commit = Commit.new
-  end
+  before_action :check_person, only: [:create, :edit, :update, :destroy]
 
   def create
     @commit = Commit.new(commit_params)
@@ -14,7 +10,10 @@ class CommitsController < ApplicationController
       @commit.save
       redirect_to task_path(@task)
     else
-      render :new
+      @commits = @task.commits.order('created_at DESC')
+      @message = Message.new
+      @messages = @task.messages.includes(:user).order('created_at DESC')
+      render "/tasks/show"
     end
   end
 

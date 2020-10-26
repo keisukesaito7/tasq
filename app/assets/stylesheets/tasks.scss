@@ -1,4 +1,8 @@
 // tasks#index(home/_sign_in_top)
+.my-tasks-wrapper {
+  margin-bottom: 100px;
+}
+
 .tasks-index-title {
   border-bottom: 1px solid lightgrey;
   margin-bottom: 10px;
@@ -12,6 +16,7 @@
 
 // tasks/_task.html.erb
 .card-config {
+  width: 16rem;
   margin: 0 16px 16px 0;
 }
 
@@ -20,31 +25,92 @@
   transition: 0.5s;
 }
 
+
+//////////////////////////////
 // tasks/show.html.erb
-.task-info-wrapper {
+.tasks-show-container {
+  padding-bottom: 20px;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid darkgray;
-  padding-bottom: 10px;
 }
 
-// simple_formのpタグのmarginを消す(bootstrapのreset)
-.each-task-info > h5 > p {
+.task-info-and-commit-log-wrapper {
+  width: 65%;
+}
+
+.task-info-wrapper {
+  background-color: #b9d7ff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  // border: 1px solid darkgray;
+  padding: 10px;
+}
+
+// .each-task-info {
+  
+// }
+
+.task-title-wrapper {
+  margin-bottom: 20px;
+  h4 {
+    margin: 0px;
+  }
+}
+
+
+.task-purpose-wrapper {
+  margin-bottom: 20px;
+  p {
+    margin: 0;
+    padding-left: 15px;
+  }
+}
+
+
+.task-goal-wrapper {
+  p {
+    // simple_formのpタグのmarginを消す(bootstrapのreset)
+    margin: 0;
+    padding-left: 15px;
+  }
+}
+
+
+// コミットログ＆メッセージ
+// コミット一覧
+.commit-log-wrapper {
+  margin-top: 50px;
+  padding: 10px 10px 10px;
+  background-color: #ffe3c8;
+  border-radius: 10px;
+}
+
+
+.commit-log-title {
   margin: 0;
 }
 
-// コミットログ＆メッセージ
-.commit-log-and-message-wrapper {
-  padding-top: 20px;
-  display: flex;
-  justify-content: space-between;
+
+.commit-log-title-and-button-wrapper {
+  margin-bottom: 10px; 
 }
 
-// コミット一覧
-.commit-log-wrapper {
-  // background-color: skyblue;
-  width: 65%;
+
+.new-commit-form {
+  padding-bottom: 10px;
+  margin: 10px 0px 15px;
+  border-bottom: 1px solid lightgray;
 }
+
+
+// コミット新規作成フォームのテキストエリア
+.commit-textarea {
+  width: 100%;
+  height: 75px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
 
 // コミット文が長いときは折り返す
 .commit-over-flow-wrap, .message-over-flow-wrap {
@@ -54,8 +120,30 @@
   }
 }
 
+// 右側ブロックの設定
+.reviewer-and-message-wrapper {
+  padding-left: 5px;
+  border-left: 1px solid lightgray;
+}
+
+
+// レビュアー部分
+.reviewer-wrapper {
+  margin-bottom: 20px;
+  width: 350px;
+  h4 {
+    border-bottom: 1px solid darkgray;
+  }
+}
+
+
 // メッセージ部分
 .message-wrapper {
+  padding-top: 10px;
   // background-color: darkgray;
   width: 350px;
+}
+
+.message-form-title {
+  border-bottom: 1px solid darkgray;
 }

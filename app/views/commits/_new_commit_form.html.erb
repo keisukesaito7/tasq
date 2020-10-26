@@ -1,0 +1,11 @@
+<div class="new-commit-form">
+  <%= form_with model: [@task, @commit], local: true do |f| %>
+    <%= render partial: '/shared/error_messages', locals: { model: @commit } %>
+    <div class="field" style="width: 100%;">
+      <%= f.text_area :content, autofocus: true, class: "commit-textarea", placeholder: "コミットを入力" %>
+    </div>
+    <button class="btn btn-secondary" style="padding: 1px 6px;">
+      保存
+    </button>
+  <% end %>
+</div>

@@ -1,0 +1,23 @@
+<div class="task-info-wrapper shadow-sm">
+  <div class="each-task-info">
+    <div class="task-title-wrapper">
+      <h4><%= @task.title %></h4>
+    </div>
+    <div class="task-purpose-wrapper">
+      <h5>Purpose</h5>
+      <p><%= @task.purpose %><p>
+    </div>
+    <div class="task-goal-wrapper">
+      <h5>Goal</h5>
+      <p><%= simple_format(h(@task.goal)) %></p>
+    </div>
+  </div>
+  <div class="task-title-buttons" >
+    <%= link_to edit_task_path(@task), class: "btn btn-primary" do %>
+      <i class="fas fa-edit"></i>
+    <% end %>
+    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#taskDestroyModal">
+      <i class="fas fa-trash-alt"></i>
+    </button>
+  </div>
+</div>

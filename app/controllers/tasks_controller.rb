@@ -11,13 +11,14 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.valid?
       @task.save
-      redirect_to root_path
+      redirect_to task_path(@task)
     else
       render :new
     end
   end
 
   def show
+    @commit = Commit.new
     @commits = @task.commits.order('created_at DESC')
     @message = Message.new
     @messages = @task.messages.includes(:user).order('created_at DESC')
