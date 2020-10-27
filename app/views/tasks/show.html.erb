@@ -54,9 +54,9 @@
       <h4 class="message-form-title">Messages</h4>
       <%# 埋め込み先リスト %>
       <div>
-        <ul id="message-list">
+        <ul class="message-lists" id="message-lists">
           <% @messages.each do |message| %>
-            <li class="message-over-flow-wrap"><%= "#{message.text} by #{message.user.nickname}" %></li>
+            <li class="each-message-wrapper"><%= "#{message.text} (by #{message.user.nickname})" %></li>
           <% end %>
         </ul>
       </div>
