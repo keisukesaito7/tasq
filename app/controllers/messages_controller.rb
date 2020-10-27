@@ -12,8 +12,8 @@ class MessagesController < ApplicationController
       @commits = @task.commits.order('created_at DESC')
       @messages = @task.messages.includes(:user).order('created_at DESC')
       @permission = Permission.new
-      @permissions = @task.permissions.where.not(user_id: [current_user.id, @task.user_id]).includes(:user).order("created_at DESC")
-      render "/tasks/show"
+      @permissions = @task.permissions.where.not(user_id: [current_user.id, @task.user_id]).includes(:user).order('created_at DESC')
+      render '/tasks/show'
     end
   end
 

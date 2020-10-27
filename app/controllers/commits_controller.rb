@@ -13,7 +13,7 @@ class CommitsController < ApplicationController
       @commits = @task.commits.order('created_at DESC')
       @message = Message.new
       @messages = @task.messages.includes(:user).order('created_at DESC')
-      render "/tasks/show"
+      render '/tasks/show'
     end
   end
 

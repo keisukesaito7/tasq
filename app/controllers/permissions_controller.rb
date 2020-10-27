@@ -10,19 +10,17 @@ class PermissionsController < ApplicationController
       redirect_to task_path(@task)
     else
       @commit = Commit.new
-      @commits = @task.commits.order("created_at DESC")
+      @commits = @task.commits.order('created_at DESC')
       @message = Message.new
-      @messages = @task.messages.includes(:user).order("created_at DESC")
-      @permissions = @task.permissions.where.not(user_id: [current_user.id, @task.user_id]).includes(:user).order("created_at DESC")
-      render "tasks/show"
+      @messages = @task.messages.includes(:user).order('created_at DESC')
+      @permissions = @task.permissions.where.not(user_id: [current_user.id, @task.user_id]).includes(:user).order('created_at DESC')
+      render 'tasks/show'
     end
   end
 
   def destroy
     permission = Permission.find(params[:id])
-    if permission.destroy
-      redirect_to task_path(@task)
-    end
+    redirect_to task_path(@task) if permission.destroy
   end
 
   private

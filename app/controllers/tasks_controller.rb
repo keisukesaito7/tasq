@@ -26,7 +26,7 @@ class TasksController < ApplicationController
     @message = Message.new
     @messages = @task.messages.includes(:user).order('created_at DESC')
     @permission = Permission.new
-    @permissions = @task.permissions.where.not(user_id: [current_user.id, @task.user_id]).includes(:user).order("created_at DESC")
+    @permissions = @task.permissions.where.not(user_id: [current_user.id, @task.user_id]).includes(:user).order('created_at DESC')
   end
 
   def edit
@@ -59,20 +59,19 @@ class TasksController < ApplicationController
   end
 
   def check_permission
-    redirect_to root_path if !permission_exist?
+    redirect_to root_path unless permission_exist?
   end
 
   def permission_exist?
     permission = @task.permissions.where(user_id: current_user.id)
     if permission.any?
-      return true
+      true
     else
-      return false
+      false
     end
   end
 
   def check_owner
     redirect_to root_path if @task.user_id != current_user.id
   end
-
 end

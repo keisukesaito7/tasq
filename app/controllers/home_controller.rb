@@ -14,5 +14,4 @@ class HomeController < ApplicationController
       @permitted_tasks = current_user.tasks.where.not(user_id: current_user.id).order('created_at DESC')
     end
   end
-  
 end
