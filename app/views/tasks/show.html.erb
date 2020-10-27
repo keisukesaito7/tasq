@@ -23,12 +23,20 @@
     <%#レビュアーー情報を表示 %>
     <div class="reviewer-wrapper">
       <h4>Reviewer</h4>
-      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        Button with data-target
+      <ul class="reviewer-list">
+        <% 10.times do |i| %>
+          <li class="each-reviewer"><%= "仮置きuser#{i+1}" %></li>
+        <% end %>
+      </ul>
+      <button type="button" data-toggle="collapse" data-target="#collapseUserIdForm" aria-expanded="false" aria-controls="collapseExample"  style="margin-bottom: 10px; font-size: 12px;">
+        追加
       </button>
-      <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+      <div class="collapse" id="collapseUserIdForm">
+        <div class="search-user-id-form">
+          <%= form_with url: "#", local: true do |f| %>
+            <%= f.number_field :hoge, min: 1 %>
+            <%= f.submit %>
+          <% end %>
         </div>
       </div>
     </div>
