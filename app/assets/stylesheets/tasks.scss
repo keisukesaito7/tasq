@@ -82,7 +82,7 @@
 .commit-log-wrapper {
   margin-top: 50px;
   padding: 10px 10px 10px;
-  background-color: #ffe3c8;
+  // background-color: #f9c8ff;
   border-radius: 10px;
 }
 
@@ -153,6 +153,21 @@
   background-color: rgb(200, 240, 255);
   border: 1px solid lightgray;
   border-radius: 10px;
+}
+
+
+.reviewer-delete-link {
+  text-decoration: none;
+  color: black;
+}
+
+
+// レビュアー追加ボタン
+.add-reviewer-btn{
+  padding: 5px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  border: 1px solid lightgray;
 }
 
 

@@ -1,5 +1,7 @@
 class PermissionsController < ApplicationController
-  before_action :set_task, only: [:create]
+  before_action :authenticate_user!, only: [:create, :destroy]
+  before_action :set_task, only: [:create, :destroy]
+  before_action :check_owner, only: [:create, :destroy]
 
   def create
     @permission = Permission.new(permission_params)
@@ -11,7 +13,15 @@ class PermissionsController < ApplicationController
       @commits = @task.commits.order("created_at DESC")
       @message = Message.new
       @messages = @task.messages.includes(:user).order("created_at DESC")
+      @permissions = @task.permissions.where.not(user_id: [current_user.id, @task.user_id]).includes(:user).order("created_at DESC")
       render "tasks/show"
+    end
+  end
+
+  def destroy
+    permission = Permission.find(params[:id])
+    if permission.destroy
+      redirect_to task_path(@task)
     end
   end
 
@@ -23,5 +33,9 @@ class PermissionsController < ApplicationController
 
   def set_task
     @task = Task.find(params[:task_id])
+  end
+
+  def check_owner
+    redirect_to root_path if @task.user_id != current_user.id
   end
 end
