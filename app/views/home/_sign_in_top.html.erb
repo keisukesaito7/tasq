@@ -8,7 +8,7 @@
   <% end %>
   <%# タスク一覧表示部分 %>
   <div class="tasks-wrapper">
-    <%= render partial: 'tasks/task', collection: @tasks %>
+    <%= render partial: 'tasks/task', collection: @my_tasks %>
   </div>
 </div>
 
@@ -19,7 +19,7 @@
   </div>
   <%# タスク一覧表示部分 %>
   <div class="tasks-wrapper">
-    <%# permission機能実装後にcollectionを変更  %>
-    <%# render partial: 'tasks/task', collection: @tasks %>
+    <%# permission機能実装後にcollectionを変更 %>
+    <%= render partial: 'tasks/task', collection: @permitted_tasks %>
   </div>
 </div>

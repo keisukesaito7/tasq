@@ -8,7 +8,9 @@
       <div class="commit-log-title-and-button-wrapper">
         <h4 class="commit-log-title">Commit</h4>
         <%# コミットフォーム %>
-        <%= render '/commits/new_commit_form' %>
+        <% if @task.user_id == current_user.id %>
+          <%= render '/commits/new_commit_form' %>
+        <% end %>
       </div>
       <%# コミットリスト %>
       <ul class="list-group">
@@ -24,21 +26,23 @@
     <div class="reviewer-wrapper">
       <h4>Reviewer</h4>
       <ul class="reviewer-list">
-        <% 10.times do |i| %>
-          <li class="each-reviewer"><%= "仮置きuser#{i+1}" %></li>
+        <% @permissions.each do |permission| %>
+          <li class="each-reviewer"><%= permission.user.nickname %></li>
         <% end %>
       </ul>
-      <button type="button" data-toggle="collapse" data-target="#collapseUserIdForm" aria-expanded="false" aria-controls="collapseExample"  style="margin-bottom: 10px; font-size: 12px;">
-        追加
-      </button>
-      <div class="collapse" id="collapseUserIdForm">
-        <div class="search-user-id-form">
-          <%= form_with url: "#", local: true do |f| %>
-            <%= f.number_field :hoge, min: 1 %>
-            <%= f.submit %>
-          <% end %>
+      <% if @task.user_id == current_user.id %>  
+        <button type="button" data-toggle="collapse" data-target="#collapseUserIdForm" aria-expanded="false" aria-controls="collapseExample"  style="margin-bottom: 10px; font-size: 12px;">
+          追加
+        </button>
+        <div class="collapse" id="collapseUserIdForm">
+          <div class="search-user-id-form">
+            <%= form_with model: [@task, @permission], local: true do |f| %>
+              <%= f.number_field :user_id, min: 1 %>
+              <%= f.submit %>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
 
     <%# メッセージ部分%>
