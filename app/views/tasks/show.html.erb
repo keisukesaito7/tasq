@@ -4,11 +4,13 @@
     <%# タスクの情報を表示 %>
     <%= render '/tasks/task_info' %>
     <%# コミット部分 %>
-    <div class="commit-log-wrapper shadow-sm">
+    <div class="commit-log-wrapper shadow">
       <div class="commit-log-title-and-button-wrapper">
         <h4 class="commit-log-title">Commit</h4>
         <%# コミットフォーム %>
-        <%= render '/commits/new_commit_form' %>
+        <% if @task.user_id == current_user.id %>
+          <%= render '/commits/new_commit_form' %>
+        <% end %>
       </div>
       <%# コミットリスト %>
       <ul class="list-group">
@@ -18,19 +20,33 @@
   </div>
   <%# /タスク情報とコミットを囲む %>
 
-
   <div class="reviewer-and-message-wrapper">
     <%#レビュアーー情報を表示 %>
     <div class="reviewer-wrapper">
       <h4>Reviewer</h4>
-      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        Button with data-target
-      </button>
-      <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+      <ul class="reviewer-list">
+        <% @permissions.each do |permission| %>
+          <li class="each-reviewer">
+            <%= link_to task_permission_path(@task, permission), class: "reviewer-delete-link", method: :delete do %>
+              <%= permission.user.nickname %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+      <% if @task.user_id == current_user.id %>
+        <%# ユーザー追加フォーム出現ボタン %>
+        <button class="add-reviewer-btn" type="button" data-toggle="collapse" data-target="#collapseUserIdForm" aria-expanded="false" aria-controls="collapseExample">
+          <i class="fas fa-user-plus"></i> 追加
+        </button>
+        <div class="collapse" id="collapseUserIdForm">
+          <div class="search-user-id-form">
+            <%= form_with model: [@task, @permission], local: true do |f| %>
+              <%= f.number_field :user_id, min: 1, placeholder: "ユーザーIDを入力" %>
+              <%= f.submit "追加" %>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
 
     <%# メッセージ部分%>
@@ -38,9 +54,9 @@
       <h4 class="message-form-title">Messages</h4>
       <%# 埋め込み先リスト %>
       <div>
-        <ul id="message-list">
+        <ul class="message-lists" id="message-lists">
           <% @messages.each do |message| %>
-            <li class="message-over-flow-wrap"><%= "#{message.text} by #{message.user.nickname}" %></li>
+            <li class="each-message-wrapper"><%= "#{message.text} (by #{message.user.nickname})" %></li>
           <% end %>
         </ul>
       </div>

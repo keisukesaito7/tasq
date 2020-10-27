@@ -82,7 +82,7 @@
 .commit-log-wrapper {
   margin-top: 50px;
   padding: 10px 10px 10px;
-  background-color: #ffe3c8;
+  // background-color: #f9c8ff;
   border-radius: 10px;
 }
 
@@ -129,7 +129,7 @@
 
 // レビュアー部分
 .reviewer-wrapper {
-  margin-bottom: 20px;
+  padding-bottom: 20px;
   width: 350px;
   h4 {
     border-bottom: 1px solid darkgray;
@@ -137,13 +137,60 @@
 }
 
 
+// レビュアーリスト
+.reviewer-list {
+  padding-left: 0px;
+  margin: 0px 0px 10px;
+  list-style: none;
+}
+
+
+// それぞれのレビュアー
+.each-reviewer {
+  display: inline-block;
+  padding: 2px 5px;
+  margin-bottom: 5px;
+  background-color: rgb(200, 240, 255);
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}
+
+
+.reviewer-delete-link {
+  text-decoration: none;
+  color: black;
+}
+
+
+// レビュアー追加ボタン
+.add-reviewer-btn{
+  padding: 5px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  border: 1px solid lightgray;
+}
+
+
+
 // メッセージ部分
 .message-wrapper {
-  padding-top: 10px;
+  margin-top: 10px;
   // background-color: darkgray;
   width: 350px;
 }
 
+
 .message-form-title {
   border-bottom: 1px solid darkgray;
+}
+
+
+.message-lists {
+  padding: 0px;
+  list-style: none;
+}
+
+
+.each-message-wrapper {
+  margin: 5px 0px;
 }

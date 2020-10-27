@@ -6,6 +6,8 @@ class Task < ApplicationRecord
   end
 
   belongs_to :user
+  has_many :permissions
+  has_many :users, through: :permissions, dependent: :delete_all
   has_many :commits,  dependent: :delete_all
   has_many :messages, dependent: :delete_all
 end

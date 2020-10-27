@@ -1,7 +1,8 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  before_action :check_person, only: [:show, :edit, :update, :destroy]
+  before_action :check_permission, only: [:show]
+  before_action :check_owner, only: [:edit, :update, :destroy]
 
   def new
     @task = Task.new
@@ -11,6 +12,8 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.valid?
       @task.save
+      # 修正ポイント（permissionも同時に保存したい）
+      Permission.create(user_id: current_user.id, task_id: @task.id)
       redirect_to task_path(@task)
     else
       render :new
@@ -22,6 +25,8 @@ class TasksController < ApplicationController
     @commits = @task.commits.order('created_at DESC')
     @message = Message.new
     @messages = @task.messages.includes(:user).order('created_at DESC')
+    @permission = Permission.new
+    @permissions = @task.permissions.where.not(user_id: [current_user.id, @task.user_id]).includes(:user).order('created_at DESC')
   end
 
   def edit
@@ -53,7 +58,20 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
-  def check_person
+  def check_permission
+    redirect_to root_path unless permission_exist?
+  end
+
+  def permission_exist?
+    permission = @task.permissions.where(user_id: current_user.id)
+    if permission.any?
+      true
+    else
+      false
+    end
+  end
+
+  def check_owner
     redirect_to root_path if @task.user_id != current_user.id
   end
 end
