@@ -192,5 +192,14 @@
 
 
 .each-message-wrapper {
-  margin: 5px 0px;
+  margin: 5px 0px 20px;
+  p {
+    margin: 0px;
+  }
+}
+
+.each-message-sender, .each-message-time {
+  display: inline-block;
+  color: gray;
+  font-size: 13px;
 }

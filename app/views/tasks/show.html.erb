@@ -56,7 +56,11 @@
       <div>
         <ul class="message-lists" id="message-lists">
           <% @messages.each do |message| %>
-            <li class="each-message-wrapper"><%= "#{message.text} (by #{message.user.nickname})" %></li>
+            <li class="each-message-wrapper" style="font-size: 15px;">
+              <p class="each-message-time"><%= message.created_at %></p>
+              <p class="each-message-sender"><%= "by (#{message.user.nickname})" %></p>
+              <%= simple_format(message.text) %>
+            </li>
           <% end %>
         </ul>
       </div>
