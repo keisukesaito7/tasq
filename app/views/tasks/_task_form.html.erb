@@ -1,21 +1,22 @@
-<%= form_with model: task, local: true do |f| %>
-  <%= render partial: '/shared/error_messages', locals: { model: task } %>
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title, autofocus: true %>
+<h1 class="form-title"><%= title_text %></h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 form-wrapper">
+    <%= form_with model: task, local: true do |f| %>
+      <%= render partial: '/shared/error_messages', locals: { model: task } %>
+      <div class = 'form-group'>
+        <%= f.label :title, "タスク名" %>
+        <%= f.text_field :title, autofocus: true, class: "form-control", placeholder: "例) 論文「〇〇」を読む" %>
+      </div>
+      <div class = 'form-group'>
+        <%= f.label :purpose, "目的" %>
+        <%= f.text_field :purpose, class: "form-control", placeholder: "例) △△の基礎を理解するため" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :goal, "ゴール" %>
+        <%= f.text_area :goal, class: "form-control", placeholder: "例) 下記の項目を整理する\n・何を解決したい？ 何が目的？\n・実験のデザイン\n・結果と考察", style: "height: 120px;" %>
+      </div>
+      <%= f.submit submit_text, class: "btn btn-primary form-submit-btn" %>
+      <%= link_to link_text, link_url, class: "link-below-user-form" %>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :purpose %>
-    <%= f.text_field :purpose %>
-  </div>
-
-  <div class="field">
-    <%= f.label :goal %>
-    <%= f.text_area :goal %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "#{submit_text}" %>
-  </div>
-<% end %>
+</div>
