@@ -1,3 +1,3 @@
 <div class="container">
-  <%= render partial: "task_form", locals: { task: @task, submit_text: "更新" } %>
+  <%= render partial: "task_form", locals: { task: @task, title_text:"タスクを編集", submit_text: "更新", link_text: "タスクへ戻る", link_url: task_path(@task) } %>
 </div>

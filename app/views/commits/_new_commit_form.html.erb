@@ -1,11 +1,11 @@
 <div class="new-commit-form">
   <%= form_with model: [@task, @commit], local: true do |f| %>
     <%= render partial: '/shared/error_messages', locals: { model: @commit } %>
-    <div class="field" style="width: 100%;">
-      <%= f.text_area :content, autofocus: true, class: "commit-textarea", placeholder: "コミットを入力" %>
+    <div class="form-group">
+      <%= f.text_area :content, autofocus: true, class: "form-control", placeholder: "コミットを入力\n例) p.○○ : 課題の分離とは…である。", style: "height: 80px;" %>
     </div>
-    <button class="btn btn-secondary" style="padding: 1px 6px;">
-      保存
+    <button class="btn btn-secondary btn-sm">
+      コミット
     </button>
   <% end %>
 </div>
