@@ -3,11 +3,11 @@
     <%# タスクタイトル＆コミット %>
     <div class="col-lg-8 mb-5">
       <%# タスクタイトル＆ボタン %>
-      <div class="d-flex px-2 mb-4">
-        <h3 class="margin-reset"><%= @task.title %></h3>
+      <div class="d-flex px-2 mb-4" style="justify-content: space-between;">
+        <h3 class="margin-reset padding-reset col-10 over-flow-wrap"><%= @task.title %></h3>
         <%# タイトル横のボタン %>
         <% if @task.user_id == current_user.id %>  
-          <div class="ml-3" >
+          <div class="task-btn">
             <%= link_to edit_task_path(@task), class: "btn btn-primary btn-sm" do %>
               <i class="fas fa-edit"></i>
             <% end %>
@@ -37,14 +37,14 @@
       <%# タスクの目的 %>
       <div class="mb-5">
         <h5 class="border-b-dg">Purpose</h5>
-        <div class="padding-reset margin-reset fs-15">
+        <div class="padding-reset margin-reset over-flow-wrap fs-15">
           <%= simple_format(h(@task.purpose)) %>
         </div>
       </div>
       <%# タスクのゴール %>
       <div class="mb-5">
         <h5 class="border-b-dg">Goal</h5>
-        <div class="padding-reset margin-reset fs-15">
+        <div class="padding-reset margin-reset over-flow-wrap fs-15">
           <%= simple_format(h(@task.goal)) %>
         </div>
       </div>
