@@ -1,10 +1,10 @@
-<div class="new-commit-form">
+<div class="pb-3 mt-2 mb-3 border-b-dg">
   <%= form_with model: [@task, @commit], local: true do |f| %>
     <div class="form-group">
       <%= f.text_area :content, autofocus: true, class: "form-control", placeholder: "コミットを入力\n例) p.○○ : 課題の分離とは…である。", style: "height: 80px;" %>
     </div>
     <button class="btn btn-secondary btn-sm">
-      コミット
+      追加
     </button>
   <% end %>
 </div>
