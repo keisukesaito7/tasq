@@ -3,7 +3,7 @@
     <%# タスクタイトル＆コミット %>
     <div class="col-lg-8 mb-5">
       <%# タスクタイトル＆ボタン %>
-      <div class="d-flex px-2 mb-4" style="justify-content: space-between;">
+      <div class="px-2 mb-4 d-flex justify-content-between">
         <h3 class="margin-reset padding-reset col-10 over-flow-wrap"><b><%= @task.title %></b></h3>
         <%# タイトル横のボタン %>
         <% if @task.user_id == current_user.id %>  
@@ -52,6 +52,7 @@
       <div class="mb-5">
         <h5 class="border-b-dg"><b>レビュアー</b></h5>
         <ul class="mb-1 pl-0 list-unstyled">
+          <%# レビュアー一覧 %>
           <% @permissions.each do |permission| %>
             <li class="each-reviewer">
               <%= link_to task_permission_path(@task, permission), class: "text-reset fs-15", method: :delete do %>
