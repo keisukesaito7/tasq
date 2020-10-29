@@ -6,19 +6,19 @@
         <%= render "devise/shared/error_messages", resource: resource %>
         <div class = 'form-group'>
           <%= f.label :nickname, "ユーザー名" %>
-          <%= f.text_field :nickname, autofocus: true, class: "form-control" %>
+          <%= f.text_field :nickname, autofocus: true, class: "form-control", placeholder: "最大10文字", maxlength: 10 %>
         </div>
         <div class = 'form-group'>
           <%= f.label :email, "メールアドレス" %>
-          <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+          <%= f.email_field :email, autocomplete: "email", class: "form-control", placeholder: "xxx@email.com" %>
         </div>
         <div class="form-group">
           <%= f.label :password, "パスワード" %>
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "半角英数6文字以上" %>
         </div>
         <div class="form-group">
           <%= f.label :password_confirmation, "パスワード(確認)" %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "再度ご入力ください" %>
         </div>
         <%= f.submit "登録する", class: "btn btn-primary form-submit-btn" %>
         <%= link_to  "ログインはこちらから", new_user_session_path, class: "link-below-user-form" %>
