@@ -32,3 +32,17 @@
  .add-margin-bottom-5px {
   margin-bottom: 5px;
  }
+
+ .margin-reset {
+   margin: 0 !important;
+ }
+
+ .padding-reset {
+   padding: 0 !important;
+ }
+
+ .text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+ }

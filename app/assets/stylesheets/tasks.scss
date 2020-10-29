@@ -9,20 +9,19 @@
   font-size: 20px;
 }
 
-.tasks-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 // tasks/_task.html.erb
-.card-config {
-  width: 16rem;
-  margin: 0 16px 16px 0;
-}
-
 .card-body:hover {
   background-color: lightgrey;
   transition: 0.5s;
+}
+
+.card-title {
+  font-weight: bold;
+  color: #212529;
+}
+
+.card-text {
+  color: #212529
 }
 
 //////////////////////////////
@@ -36,7 +35,6 @@
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
-  // border: 1px solid darkgray;
   padding: 10px;
 }
 
