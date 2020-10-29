@@ -10,6 +10,7 @@
           <h4 class="commit-log-title">Commit</h4>
           <%# コミットフォーム %>
           <% if @task.user_id == current_user.id %>
+            <%= render partial: '/shared/error_messages', locals: { model: @commit } %>
             <%= render '/commits/new_commit_form' %>
           <% end %>
         </div>
