@@ -2,7 +2,7 @@
   <div class="container">
     <div class="header-contents">
       <div class="header-title">
-        <%= link_to "TasQ", root_path, class: "navbar-brand margin-reset pl-2 py-0", style: "font-size: 1.8rem; "%>
+        <%= link_to "TasQ", root_path, class: "navbar-brand mr-0 pl-2 py-0", style: "font-size: 1.8rem; "%>
       </div>
       <div class="header-buttons">
         <% if user_signed_in? %>
@@ -11,7 +11,7 @@
               <i class="fas fa-user"></i> <%= current_user.nickname %>
             </button>
             <div class="dropdown-menu dropdown-menu-right">
-              <p class="dropdown-item" style="margin: 0;">
+              <p class="dropdown-item mb-0">
                 ユーザーID : <%= current_user.id %>
               </p>
               <div class="dropdown-divider"></div>
@@ -20,8 +20,6 @@
               <% end %>
               <%= link_to '#', class: "dropdown-item" do %>
                 <i class="fas fa-user-edit"></i> アカウント情報編集
-              <% end %>
-              <%= link_to '#', class: "dropdown-item" do %>
               <% end %>
               <div class="dropdown-divider"></div>
               <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>

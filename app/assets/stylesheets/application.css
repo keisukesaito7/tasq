@@ -30,14 +30,6 @@
    align-items: center;
  }
 
- .margin-reset {
-   margin: 0 !important;
- }
-
- .padding-reset {
-   padding: 0 !important;
- }
-
  .text-overflow {
   overflow: hidden;
   text-overflow: ellipsis;

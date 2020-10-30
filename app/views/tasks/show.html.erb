@@ -4,7 +4,7 @@
     <div class="col-lg-8 mb-5">
       <%# タスクタイトル＆ボタン %>
       <div class="px-2 mb-4 d-flex justify-content-between">
-        <h3 class="margin-reset padding-reset col-10 over-flow-wrap"><b><%= @task.title %></b></h3>
+        <h3 class="p-0 m-0 col-10 over-flow-wrap"><b><%= @task.title %></b></h3>
         <%# タイトル横のボタン %>
         <% if @task.user_id == current_user.id %>  
           <div class="task-btn">
@@ -19,7 +19,7 @@
       </div>
       <%# コミット部分 %>
       <div class="px-2 py-2 mt-3 shadow rounded">
-        <h4 class="margin-reset"><b>コミット</b></h4>
+        <h4 class="m-0"><b>コミット</b></h4>
         <%# コミットフォーム %>
         <% if @task.user_id == current_user.id %>
           <%= render partial: '/shared/error_messages', locals: { model: @commit } %>
@@ -37,14 +37,14 @@
       <%# タスクの目的 %>
       <div class="mb-5">
         <h5 class="border-b-dg"><b>目的</b></h5>
-        <div class="padding-reset margin-reset over-flow-wrap fs-15">
+        <div class="p-0 m-0 over-flow-wrap fs-15">
           <%= simple_format(h(@task.purpose)) %>
         </div>
       </div>
       <%# タスクのゴール %>
       <div class="mb-5">
         <h5 class="border-b-dg"><b>ゴール</b></h5>
-        <div class="padding-reset margin-reset over-flow-wrap fs-15">
+        <div class="p-0 m-0 over-flow-wrap fs-15">
           <%= simple_format(h(@task.goal)) %>
         </div>
       </div>
@@ -82,7 +82,7 @@
         <h5 class="border-b-dg"><b>チャット</b></h5>
         <%# メッセージリスト %>
         <div>
-          <ul class="padding-reset list-unstyled over-flow-wrap">
+          <ul class="p-0 list-unstyled over-flow-wrap">
             <% @messages.each do |message| %>
               <li class="each-message-wrapper fs-15">
                 <p class="each-message-info"><%= l message.created_at %></p>
