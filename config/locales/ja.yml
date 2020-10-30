@@ -2,3 +2,18 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M"
+  activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+      task:
+        title: タイトル
+        purpose: 目的
+        goal: ゴール
+      commit:
+        content: コミット内容
+      message:
+        text: メッセージ
+      permission:
+        user: ユーザー
+        user_id: ユーザー
