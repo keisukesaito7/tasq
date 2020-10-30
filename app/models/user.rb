@@ -10,4 +10,11 @@ class User < ApplicationRecord
   has_many :tasks, through: :permissions, dependent: :delete_all
   has_many :commits,  dependent: :delete_all
   has_many :messages, dependent: :delete_all
+
+  def self.guest
+    find_or_create_by!(email: "guest@test.com") do |user|
+      user.nickname = "テストユーザー"
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
 end
