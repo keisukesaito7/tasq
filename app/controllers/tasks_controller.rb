@@ -44,7 +44,7 @@ class TasksController < ApplicationController
     if @task.destroy
       redirect_to root_path
     else
-      render :show
+      redirect_to task_path(@task)
     end
   end
 
