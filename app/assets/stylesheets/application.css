@@ -16,10 +16,11 @@
 
  body {
    padding-top: calc(56px + 30px);
+   background-color: #FAFAFA !important;
  }
 
  header {
-   background-color: #003366;
+   background-color: #024180;
  }
 
  .header-contents {
@@ -27,10 +28,6 @@
    display: flex;
    justify-content: space-between;
    align-items: center;
- }
-
- .add-margin-bottom-5px {
-  margin-bottom: 5px;
  }
 
  .margin-reset {
