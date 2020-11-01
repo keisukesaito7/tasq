@@ -34,6 +34,6 @@ class PermissionsController < ApplicationController
   end
 
   def check_owner
-    redirect_to root_path if @task.user_id != current_user.id
+    redirect_to task_path(@task) if @task.user_id != current_user.id
   end
 end
