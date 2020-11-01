@@ -9,9 +9,9 @@ class HomeController < ApplicationController
   def set_tasks
     if user_signed_in?
       # 自分が作ったタスク
-      @my_tasks = current_user.tasks.as_owner(current_user.id)
+      @my_tasks = current_user.tasks.order("created_at DESC")
       # レビュー許可されたタスク
-      @permitted_tasks = current_user.tasks.as_reviewer(current_user.id)
+      @permitted_tasks = Task.as_reviewer(current_user)
     end
   end
 end
