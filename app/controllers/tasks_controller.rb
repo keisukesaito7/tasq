@@ -24,7 +24,7 @@ class TasksController < ApplicationController
     @message = Message.new
     @messages = @task.messages.includes(:user).order('created_at DESC')
     @permission = Permission.new
-    @permissions = @task.permissions.excepted(current_user, @task)
+    @permissions = @task.permissions.excepted(current_user)
   end
 
   def edit
@@ -57,7 +57,9 @@ class TasksController < ApplicationController
   end
 
   def check_permission
-    redirect_to root_path unless permission_exist?
+    if current_user.id != @task.user_id && !permission_exist?
+      redirect_to root_path
+    end
   end
 
   def permission_exist?
