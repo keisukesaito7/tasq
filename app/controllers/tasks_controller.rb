@@ -12,9 +12,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.valid?
       @task.save
-      # 修正ポイント（permissionも同時に保存したい）
-      Permission.create(user_id: current_user.id, task_id: @task.id)
-      redirect_to task_path(@task)
+      redirect_to root_path
     else
       render :new
     end
