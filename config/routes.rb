@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :tasks, except: [:index] do
     resources :commits, only: [:create, :edit, :update, :destroy]
-    resources :messages, only: [:create]
+    resources :messages, only: [:create, :destroy]
     resources :permissions, only: [:create, :destroy]
   end
   root to: 'home#top'
