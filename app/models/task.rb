@@ -7,6 +7,8 @@ class Task < ApplicationRecord
 
   belongs_to :user
   has_many :permissions
+  # タスクごとに発行した許可証を削除
+  # user.permissionsは別途削除が必要
   has_many :users, through: :permissions, dependent: :delete_all
   has_many :commits,  dependent: :delete_all
   has_many :messages, dependent: :delete_all
