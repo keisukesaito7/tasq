@@ -20,7 +20,11 @@ class PermissionsController < ApplicationController
 
   def destroy
     permission = Permission.find(params[:id])
-    redirect_to task_path(@task) if permission.destroy
+    if permission.destroy
+      redirect_to task_path(@task)
+    else
+      redirect_to task_path(@task)
+    end
   end
 
   private
