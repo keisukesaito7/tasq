@@ -12,7 +12,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.valid?
       @task.save
-      redirect_to root_path
+      redirect_to task_path(@task)
     else
       render :new
     end
