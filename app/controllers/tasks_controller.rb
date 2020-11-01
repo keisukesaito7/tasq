@@ -36,7 +36,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       redirect_to task_path(@task)
     else
-      render :show
+      render :edit
     end
   end
 

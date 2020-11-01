@@ -63,6 +63,7 @@
         </ul>
         <% if @task.user_id == current_user.id %>
           <%# ユーザー追加フォーム出現ボタン %>
+          <%= render partial: '/shared/error_messages', locals: { model: @permission } %>
           <button class="btn btn-secondary btn-sm border-0 mb-2" type="button" data-toggle="collapse" data-target="#collapseUserIdForm" aria-expanded="false" aria-controls="collapseExample">
             <i class="fas fa-user-plus"></i> 検索
           </button>
@@ -95,6 +96,7 @@
         <%# /メッセージリスト %>
         <%# メッセージフォーム %>
         <%= form_with model: [@task, @message], local: true do |f| %>
+          <%= render partial: '/shared/error_messages', locals: { model: @message } %>
           <%= f.text_area :text, class: "form-control", style: "height: 60px; margin-bottom: 10px;", placeholder: "レビューや質問はこちらから！" %>
           <%= f.submit "コメント", class: "btn btn-secondary btn-sm" %>
         <% end %>
