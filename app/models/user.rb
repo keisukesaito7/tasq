@@ -6,8 +6,9 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true, length: { maximum: 10 }
 
-  has_many :permissions
-  has_many :tasks, through: :permissions, dependent: :delete_all
+  # レビュアーとしての許可証を削除
+  has_many :permissions, dependent: :delete_all
+  has_many :tasks, dependent: :destroy
   has_many :commits,  dependent: :delete_all
   has_many :messages, dependent: :delete_all
 
