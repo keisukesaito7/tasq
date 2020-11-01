@@ -6,7 +6,8 @@ class PermissionsController < ApplicationController
   def create
     @permission = Permission.new(permission_params)
     if @permission.valid?
-      @permission.save
+      # タスクオーナーの場合は保存しない
+      @permission.save unless current_user.id == permission_params[:user_id].to_i
       redirect_to task_path(@task)
     else
       @commit = Commit.new
