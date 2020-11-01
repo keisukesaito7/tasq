@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_task, only: [:create]
+  before_action :set_task, only: [:create, :destroy]
+  before_action :check_person, only: [:destroy]
 
   def create
     @message = Message.new(message_params)
@@ -17,6 +18,15 @@ class MessagesController < ApplicationController
     end
   end
 
+  def destroy
+    @message = Message.find(params[:id])
+    if @message.destroy
+      redirect_to task_path(@task)
+    else
+      redirect_to task_path(@task)
+    end
+  end
+
   private
 
   def message_params
@@ -25,5 +35,10 @@ class MessagesController < ApplicationController
 
   def set_task
     @task = Task.find(params[:task_id])
+  end
+
+  def check_person
+    @message = Message.find(params[:id])
+    redirect_to root_path if @message.user_id != current_user.id
   end
 end
