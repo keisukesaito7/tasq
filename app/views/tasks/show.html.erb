@@ -88,6 +88,11 @@
               <li class="each-message-wrapper fs-15">
                 <p class="each-message-info"><%= l message.created_at %></p>
                 <p class="each-message-info"><%= "by (#{message.user.nickname})" %></p>
+                <% if message.user_id == current_user.id %>
+                 <%= link_to task_message_path(@task, message), method: :delete do %>
+                   <i class="fas fa-trash-alt float-right", style="font-size: 13px; color: gray;"></i>
+                  <% end %>
+                <% end %>
                 <%= simple_format(h(message.text)) %>
               </li>
             <% end %>
