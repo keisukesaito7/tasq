@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/show'
   resources :tasks, except: [:index] do
     resources :commits, only: [:create, :edit, :update, :destroy]
     resources :messages, only: [:create, :destroy]
