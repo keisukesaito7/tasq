@@ -15,8 +15,8 @@
                 ユーザーID : <%= current_user.id %>
               </p>
               <div class="dropdown-divider"></div>
-              <%= link_to '#', class: "dropdown-item" do %>
-                <i class="fas fa-user-circle"></i> マイページへ
+              <%= link_to user_profile_path(current_user), class: "dropdown-item" do %>
+                <i class="fas fa-user-circle"></i> マイページ
               <% end %>
               <%= link_to '#', class: "dropdown-item" do %>
                 <i class="fas fa-user-edit"></i> アカウント情報編集
