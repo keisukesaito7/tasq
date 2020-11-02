@@ -17,10 +17,12 @@
       <%= link_to '#', class: "btn btn-primary", style: "margin-top: 25px;" do %>
         <i class="fas fa-edit"></i> アカウント情報編集
       <% end %></br>
-      <%= link_to '#', class:"btn btn-secondary my-2" do %>
+      <%= link_to '#', class:"btn btn-secondary my-2", "data-toggle": "modal", "data-target": "#userDestroyModal" do %>
         退会する
       <% end %></br>
       <%= link_to "トップページへ戻る", root_path %>
     </div>
   </div>
+  <%# userのdestroyモーダル %>
+  <%= render partial: '/shared/destroy_modal', locals: { id: "userDestroyModal", target: "アカウント", url: user_registration_path } %>
 </div>
