@@ -1,4 +1,4 @@
-class Users::SessionsController < Devise::SessionsController
+class Users::TestSessionsController < Devise::SessionsController
   def new_guest
     user = User.guest
     sign_in user
