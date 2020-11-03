@@ -28,7 +28,7 @@
           <%= f.password_field :current_password, autocomplete: "current-password",class: "form-control", placeholder: "必須項目です" %>
         </div>
         <%= f.submit "変更する", class: "btn btn-primary form-submit-btn" %>
-        <%= link_to  "マイページへ", root_path, class: "link-below-user-form" %>
+        <%= link_to  "マイページへ", user_profile_path(current_user), class: "link-below-user-form" %>
       <% end %>
     </div>
   </div>
