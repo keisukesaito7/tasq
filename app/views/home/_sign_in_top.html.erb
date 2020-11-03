@@ -20,6 +20,6 @@
   <%# タスク一覧表示部分 %>
   <div class="row w-100 mx-0 mt-2">
     <%# permission機能実装後にcollectionを変更 %>
-    <%= render partial: 'tasks/task', collection: @permitted_tasks %>
+    <%= render partial: 'tasks/permitted_task', collection: @permitted_tasks %>
   </div>
 </div>
