@@ -1,114 +1,112 @@
-<div class="container"> 
-  <div class="row">
-    <%# タスクタイトル＆コミット %>
-    <div class="col-lg-8 mb-5">
-      <%# タスクタイトル＆ボタン %>
-      <div class="px-2 mb-4 d-flex justify-content-between">
-        <h3 class="p-0 m-0 col-10 over-flow-wrap"><b><%= @task.title %></b></h3>
-        <%# タイトル横のボタン %>
-        <% if @task.user_id == current_user.id %>  
-          <div class="task-btn">
-            <%= link_to edit_task_path(@task), class: "btn btn-primary btn-sm" do %>
-              <i class="fas fa-edit"></i>
-            <% end %>
-            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#taskDestroyModal">
-              <i class="fas fa-trash-alt"></i>
-            </button>
-          </div>
-        <% end %>
-      </div>
-      <%# コミット部分 %>
-      <div class="px-2 py-2 mt-3 shadow rounded">
-        <h4 class="m-0"><b>コミット</b></h4>
-        <%# コミットフォーム %>
-        <% if @task.user_id == current_user.id %>
-          <%= render partial: '/shared/error_messages', locals: { model: @commit } %>
-          <%= render '/commits/new_commit_form' %>
-        <% end %>
-        <%# コミットリスト %>
-        <ul class="list-group">
-          <%= render partial: '/commits/commit', collection: @commits %>
-        </ul>
+<div class="row">
+  <%# タスクタイトル＆コミット %>
+  <div class="col-lg-8 mb-5">
+    <%# タスクタイトル＆ボタン %>
+    <div class="px-2 mb-4 d-flex justify-content-between">
+      <h3 class="p-0 m-0 col-10 over-flow-wrap"><b><%= @task.title %></b></h3>
+      <%# タイトル横のボタン %>
+      <% if @task.user_id == current_user.id %>  
+        <div class="task-btn">
+          <%= link_to edit_task_path(@task), class: "btn btn-primary btn-sm" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+          <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#taskDestroyModal">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
+      <% end %>
+    </div>
+    <%# コミット部分 %>
+    <div class="px-2 py-2 mt-3 shadow rounded">
+      <h4 class="m-0"><b>コミット</b></h4>
+      <%# コミットフォーム %>
+      <% if @task.user_id == current_user.id %>
+        <%= render partial: '/shared/error_messages', locals: { model: @commit } %>
+        <%= render '/commits/new_commit_form' %>
+      <% end %>
+      <%# コミットリスト %>
+      <ul class="list-group">
+        <%= render partial: '/commits/commit', collection: @commits %>
+      </ul>
+    </div>
+  </div>
+  <%# /タスクタイトル＆コミット %>
+  <%# 目的・ゴール/レビュアー/メッセージ %>
+  <div class="sub-items-wrapper col-lg-4 mb-2">
+    <%# タスクの目的 %>
+    <div class="mb-5">
+      <h5 class="border-b-dg"><b>目的</b></h5>
+      <div class="p-0 m-0 over-flow-wrap fs-15">
+        <%= simple_format(h(@task.purpose)) %>
       </div>
     </div>
-    <%# /タスクタイトル＆コミット %>
-    <%# 目的・ゴール/レビュアー/メッセージ %>
-    <div class="sub-items-wrapper col-lg-4 mb-2">
-      <%# タスクの目的 %>
-      <div class="mb-5">
-        <h5 class="border-b-dg"><b>目的</b></h5>
-        <div class="p-0 m-0 over-flow-wrap fs-15">
-          <%= simple_format(h(@task.purpose)) %>
-        </div>
+    <%# タスクのゴール %>
+    <div class="mb-5">
+      <h5 class="border-b-dg"><b>ゴール</b></h5>
+      <div class="p-0 m-0 over-flow-wrap fs-15">
+        <%= simple_format(h(@task.goal)) %>
       </div>
-      <%# タスクのゴール %>
-      <div class="mb-5">
-        <h5 class="border-b-dg"><b>ゴール</b></h5>
-        <div class="p-0 m-0 over-flow-wrap fs-15">
-          <%= simple_format(h(@task.goal)) %>
+    </div>
+    <%# レビュアーー情報を表示 %>
+    <div class="mb-5">
+      <h5 class="border-b-dg"><b>レビュアー</b></h5>
+      <ul class="mb-1 pl-0 list-unstyled">
+        <%# レビュアー一覧 %>
+        <% @permissions.each do |permission| %>
+          <li class="each-reviewer">
+            <%= link_to task_permission_path(@task, permission), class: "text-reset fs-15", method: :delete do %>
+              <%= permission.user.nickname %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+      <% if @task.user_id == current_user.id %>
+        <%# ユーザー追加フォーム出現ボタン %>
+        <%= render partial: '/shared/error_messages', locals: { model: @permission } %>
+        <button class="btn btn-secondary btn-sm border-0 mb-2" type="button" data-toggle="collapse" data-target="#collapseUserIdForm" aria-expanded="false" aria-controls="collapseExample">
+          <i class="fas fa-user-plus"></i> 検索
+        </button>
+        <div class="collapse" id="collapseUserIdForm">
+          <div class="search-user-id-form">
+            <%= form_with model: [@task, @permission], local: true do |f| %>
+              <%= f.number_field :user_id, min: 1, placeholder: "ユーザーID", class: "form-control w-75 d-inline-block" %>
+              <%= f.submit "許可", class: "btn btn-secondary btn-sm d-inline-block" %>
+            <% end %>
+          </div>
         </div>
-      </div>
-      <%# レビュアーー情報を表示 %>
-      <div class="mb-5">
-        <h5 class="border-b-dg"><b>レビュアー</b></h5>
-        <ul class="mb-1 pl-0 list-unstyled">
-          <%# レビュアー一覧 %>
-          <% @permissions.each do |permission| %>
-            <li class="each-reviewer">
-              <%= link_to task_permission_path(@task, permission), class: "text-reset fs-15", method: :delete do %>
-                <%= permission.user.nickname %>
+      <% end %>
+    </div>
+    <%# /レビュアーー情報を表示 %>
+    <%# メッセージ部分%>
+    <div class="mb-5">
+      <h5 class="border-b-dg"><b>チャット</b></h5>
+      <%# メッセージリスト %>
+      <div>
+        <ul class="p-0 list-unstyled over-flow-wrap">
+          <% @messages.each do |message| %>
+            <li class="each-message-wrapper fs-15">
+              <p class="each-message-info"><%= l message.created_at %></p>
+              <p class="each-message-info"><%= "by (#{message.user.nickname})" %></p>
+              <% if message.user_id == current_user.id %>
+                <%= link_to task_message_path(@task, message), method: :delete do %>
+                  <i class="fas fa-trash-alt float-right", style="font-size: 13px; color: gray;"></i>
+                <% end %>
               <% end %>
+              <%= simple_format(h(message.text)) %>
             </li>
           <% end %>
         </ul>
-        <% if @task.user_id == current_user.id %>
-          <%# ユーザー追加フォーム出現ボタン %>
-          <%= render partial: '/shared/error_messages', locals: { model: @permission } %>
-          <button class="btn btn-secondary btn-sm border-0 mb-2" type="button" data-toggle="collapse" data-target="#collapseUserIdForm" aria-expanded="false" aria-controls="collapseExample">
-            <i class="fas fa-user-plus"></i> 検索
-          </button>
-          <div class="collapse" id="collapseUserIdForm">
-            <div class="search-user-id-form">
-              <%= form_with model: [@task, @permission], local: true do |f| %>
-                <%= f.number_field :user_id, min: 1, placeholder: "ユーザーID", class: "form-control w-75 d-inline-block" %>
-                <%= f.submit "許可", class: "btn btn-secondary btn-sm d-inline-block" %>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
       </div>
-      <%# /レビュアーー情報を表示 %>
-      <%# メッセージ部分%>
-      <div class="mb-5">
-        <h5 class="border-b-dg"><b>チャット</b></h5>
-        <%# メッセージリスト %>
-        <div>
-          <ul class="p-0 list-unstyled over-flow-wrap">
-            <% @messages.each do |message| %>
-              <li class="each-message-wrapper fs-15">
-                <p class="each-message-info"><%= l message.created_at %></p>
-                <p class="each-message-info"><%= "by (#{message.user.nickname})" %></p>
-                <% if message.user_id == current_user.id %>
-                 <%= link_to task_message_path(@task, message), method: :delete do %>
-                   <i class="fas fa-trash-alt float-right", style="font-size: 13px; color: gray;"></i>
-                  <% end %>
-                <% end %>
-                <%= simple_format(h(message.text)) %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-        <%# /メッセージリスト %>
-        <%# メッセージフォーム %>
-        <%= form_with model: [@task, @message], local: true do |f| %>
-          <%= render partial: '/shared/error_messages', locals: { model: @message } %>
-          <%= f.text_area :text, class: "form-control", style: "height: 60px; margin-bottom: 10px;", placeholder: "レビューや質問はこちらから！" %>
-          <%= f.submit "コメント", class: "btn btn-secondary btn-sm" %>
-        <% end %>
-      </div>
+      <%# /メッセージリスト %>
+      <%# メッセージフォーム %>
+      <%= form_with model: [@task, @message], local: true do |f| %>
+        <%= render partial: '/shared/error_messages', locals: { model: @message } %>
+        <%= f.text_area :text, class: "form-control", style: "height: 60px; margin-bottom: 10px;", placeholder: "レビューや質問はこちらから！" %>
+        <%= f.submit "コメント", class: "btn btn-secondary btn-sm" %>
+      <% end %>
     </div>
-    <%# 目的・ゴール/レビュアー/メッセージ %>
-    <%# タスクのdestroyモーダル %>
-    <%= render partial: '/shared/destroy_modal', locals: { id: "taskDestroyModal", target: "タスク", url: task_path(@task) } %>
   </div>
+  <%# 目的・ゴール/レビュアー/メッセージ %>
+  <%# タスクのdestroyモーダル %>
+  <%= render partial: '/shared/destroy_modal', locals: { id: "taskDestroyModal", target: "タスク", url: task_path(@task) } %>
 </div>

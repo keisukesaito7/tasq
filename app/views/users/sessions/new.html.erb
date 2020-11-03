@@ -1,20 +1,18 @@
-<div class="container">
-  <h1 class="form-title">ログイン</h1>
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3 form-wrapper">
-      <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-        <div class = 'form-group'>
-          <%= f.label :email, "メールアドレス" %>
-          <%= f.email_field :email, autofocus: true,  autocomplete: "email", class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :password, "パスワード" %>
-          <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
-        </div>
-        <%= f.submit "ログイン", class: "btn btn-primary form-submit-btn" %>
-      <% end %>
-      <%= link_to  "新規登録はこちらから", new_user_registration_path, class: "link-below-user-form" %>
-    </div>
+<h1 class="form-title">ログイン</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 form-wrapper">
+    <%= form_with model: @user, url: user_session_path, local: true do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class = 'form-group'>
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.email_field :email, autofocus: true,  autocomplete: "email", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password, "パスワード" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+      </div>
+      <%= f.submit "ログイン", class: "btn btn-primary form-submit-btn" %>
+    <% end %>
+    <%= link_to  "新規登録はこちらから", new_user_registration_path, class: "link-below-user-form" %>
   </div>
 </div>

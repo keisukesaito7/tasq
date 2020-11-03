@@ -1,7 +1,5 @@
-<div class="container">
-  <% if user_signed_in? %>
-    <%= render "sign_in_top" %>
-  <% else %>
-    <%= render"sign_out_top" %>
-  <% end %>
-</div>
+<% if user_signed_in? %>
+  <%= render "sign_in_top" %>
+<% else %>
+  <%= render"sign_out_top" %>
+<% end %>
