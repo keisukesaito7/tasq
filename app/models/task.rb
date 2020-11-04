@@ -14,6 +14,6 @@ class Task < ApplicationRecord
   has_many :messages, dependent: :delete_all
 
   def self.as_reviewer(user)
-    joins(:permissions).where(permissions: { user_id: user.id }).includes(:user).order("created_at DESC")
+    joins(:permissions).where(permissions: { user_id: user.id }).includes(:user).order('created_at DESC')
   end
 end

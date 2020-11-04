@@ -15,5 +15,4 @@ class UsersController < ApplicationController
   def check_person
     redirect_to root_path if current_user.id != @user.id
   end
-
 end

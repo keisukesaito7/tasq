@@ -57,9 +57,7 @@ class TasksController < ApplicationController
   end
 
   def check_permission
-    if current_user.id != @task.user_id && !permission_exist?
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id != @task.user_id && !permission_exist?
   end
 
   def permission_exist?
