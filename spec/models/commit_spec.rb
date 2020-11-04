@@ -16,7 +16,7 @@ RSpec.describe Commit, type: :model do
       it 'contentが空だと保存できない' do
         @commit.content = nil
         @commit.valid?
-        expect(@commit.errors.full_messages).to include("コミット内容を入力してください")
+        expect(@commit.errors.full_messages).to include('コミット内容を入力してください')
       end
       it 'userが紐付いていないと保存できない' do
         @commit.user = nil

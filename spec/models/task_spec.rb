@@ -12,21 +12,21 @@ RSpec.describe Task, type: :model do
       end
     end
 
-    context '新規投稿がうまくいかないとき' do      
+    context '新規投稿がうまくいかないとき' do
       it 'titleが空と保存できない' do
         @task.title = nil
         @task.valid?
-        expect(@task.errors.full_messages).to include("タイトルを入力してください")
+        expect(@task.errors.full_messages).to include('タイトルを入力してください')
       end
       it 'purposeが空だと保存できない' do
         @task.purpose = nil
         @task.valid?
-        expect(@task.errors.full_messages).to include("目的を入力してください")
+        expect(@task.errors.full_messages).to include('目的を入力してください')
       end
       it 'goalが空だと保存できない' do
         @task.goal = nil
         @task.valid?
-        expect(@task.errors.full_messages).to include("ゴールを入力してください")
+        expect(@task.errors.full_messages).to include('ゴールを入力してください')
       end
       it 'userが紐づいていないと保存できない' do
         @task.user = nil

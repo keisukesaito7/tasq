@@ -16,7 +16,7 @@ RSpec.describe User, type: :model do
       it 'nicknameが空だと保存できない' do
         @user.nickname = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include("ニックネームを入力してください")
+        expect(@user.errors.full_messages).to include('ニックネームを入力してください')
       end
       it 'nicknameが11文字以上だと保存できない' do
         @user.nickname = 'abcdeabcde1'
@@ -26,7 +26,7 @@ RSpec.describe User, type: :model do
       it 'emailが空だと保存できない' do
         @user.email = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include("メールアドレスを入力してください")
+        expect(@user.errors.full_messages).to include('メールアドレスを入力してください')
       end
       it 'emailが重複した場合は保存できない' do
         new_user = FactoryBot.build(:user)
@@ -38,7 +38,7 @@ RSpec.describe User, type: :model do
       it 'passwordが空だと保存できない' do
         @user.password = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include("パスワードを入力してください")
+        expect(@user.errors.full_messages).to include('パスワードを入力してください')
       end
       it 'passwordが5文字以下だと保存できない' do
         @user.password = 'aaaaa'
@@ -49,12 +49,12 @@ RSpec.describe User, type: :model do
       it 'password_confirmationが空だと保存できない' do
         @user.password_confirmation = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("パスワード（確認用）とパスワードの入力が一致しません")
+        expect(@user.errors.full_messages).to include('パスワード（確認用）とパスワードの入力が一致しません')
       end
       it 'password_confirmationがpasswordと一致しないと保存できない' do
         @user.password_confirmation = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("パスワード（確認用）とパスワードの入力が一致しません")
+        expect(@user.errors.full_messages).to include('パスワード（確認用）とパスワードの入力が一致しません')
       end
     end
   end

@@ -16,7 +16,7 @@ RSpec.describe Message, type: :model do
       it 'textが空だと保存できない' do
         @message.text = nil
         @message.valid?
-        expect(@message.errors.full_messages).to include("メッセージを入力してください")
+        expect(@message.errors.full_messages).to include('メッセージを入力してください')
       end
       it 'userが紐付いていないと保存できない' do
         @message.user = nil
