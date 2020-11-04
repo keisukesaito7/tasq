@@ -10,10 +10,16 @@ ja:
         title: タイトル
         purpose: 目的
         goal: ゴール
+        user: ユーザー
       commit:
         content: コミット内容
+        user: ユーザー
+        task : タスク
       message:
         text: メッセージ
+        user: ユーザー
+        task : タスク
       permission:
         user: ユーザー
+        task : タスク
         user_id: ユーザー

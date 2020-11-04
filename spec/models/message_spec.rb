@@ -5,27 +5,29 @@ RSpec.describe Message, type: :model do
     @message = FactoryBot.build(:message)
   end
 
-  describe 'messages#create' do
-    it '全ての値が入力されると保存できる' do
-      expect(@message).to be_valid
+  describe 'メッセージ新規投稿' do
+    context '新規投稿がうまくいくとき' do
+      it '全ての値が入力されると保存できる' do
+        expect(@message).to be_valid
+      end
     end
 
-    it 'textが空だと保存できない' do
-      @message.text = nil
-      @message.valid?
-      expect(@message.errors.full_messages).to include("Text can't be blank")
-    end
-
-    it 'userが紐付いていないと保存できない' do
-      @message.user = nil
-      @message.valid?
-      expect(@message.errors.full_messages).to include('User must exist')
-    end
-
-    it 'taskが紐付いていないと保存できない' do
-      @message.task = nil
-      @message.valid?
-      expect(@message.errors.full_messages).to include('Task must exist')
+    context '新規投稿がうまくいかないとき' do
+      it 'textが空だと保存できない' do
+        @message.text = nil
+        @message.valid?
+        expect(@message.errors.full_messages).to include("メッセージを入力してください")
+      end
+      it 'userが紐付いていないと保存できない' do
+        @message.user = nil
+        @message.valid?
+        expect(@message.errors.full_messages).to include('ユーザーを入力してください')
+      end
+      it 'taskが紐付いていないと保存できない' do
+        @message.task = nil
+        @message.valid?
+        expect(@message.errors.full_messages).to include('タスクを入力してください')
+      end
     end
   end
 end
