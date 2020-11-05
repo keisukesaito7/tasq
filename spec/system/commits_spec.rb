@@ -39,3 +39,29 @@ RSpec.describe "コミット新規投稿", type: :system do
     end
   end
 end
+
+RSpec.describe "コミット編集", type: :system do
+  before do
+    @commit = FactoryBot.create(:commit)
+    @new_commit = FactoryBot.build(:commit)
+  end
+
+  context 'コミット編集ができるとき' do
+    it '正しい情報が入力されれば更新されログが更新される' do
+      # ログイン
+      sign_in(@commit.task.user)
+      # マイページのタスクをクリック
+      find_link(href: "/tasks/#{@commit.task.id}").click
+      # コミット編集ボタンをクリック
+      find("svg[data-linkId='commit-edit']").click
+      # 新しい内容をフォームに入力
+      fill_in "commit_content", with: @new_commit.content
+      # 更新をクリック。レコード数が変動しないことを確認
+      expect{ find("button[id='submit-commit']").click }.to change{ Commit.count }.by(0)
+      # タスク詳細ページへの遷移を確認
+      expect(current_path).to eq task_path(@commit.task)
+      # コミット内容の更新を確認
+      expect(page).to have_content(@new_commit.content)
+    end
+  end
+end

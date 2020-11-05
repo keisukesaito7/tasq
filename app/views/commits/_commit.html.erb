@@ -4,7 +4,7 @@
       <%= l commit.created_at %>
       <% if @task.user_id == current_user.id %>  
         <%= link_to "#", "data-toggle": "modal", "data-Target": "#commitDestroyModal#{commit.id}", style: "color: gray" do %><i class="fas fa-trash-alt float-right"></i><% end %>
-        <%= link_to edit_task_commit_path(commit.task, commit) do %><i class="fas fa-edit float-right" style="margin-right: 5px;"></i><% end %>
+        <%= link_to edit_task_commit_path(commit.task, commit) do %><i class="fas fa-edit float-right" style="margin-right: 5px;" data-linkId="commit-edit"></i><% end %>
       <% end %>
     </p>
     <%= simple_format(h(commit.content)) %>

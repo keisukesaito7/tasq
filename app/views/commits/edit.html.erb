@@ -7,7 +7,7 @@
         <%= f.label :content, "タスク名" %>
         <%= f.text_area :content, autofocus: true, class: "form-control", placeholder: "コミットを入力してください", style: "height: 100px;" %>
       </div>
-      <button class="btn btn-primary form-submit-btn">
+      <button class="btn btn-primary form-submit-btn" id='submit-commit'>
         更新
       </button>
       <%= link_to "タスクへ戻る", task_path(@task), class: "link-below-user-form" %>
