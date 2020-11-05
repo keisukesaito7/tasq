@@ -179,3 +179,28 @@ RSpec.describe "マイページへ遷移", type: :system do
     end
   end
 end
+
+RSpec.describe "アカウント削除", type: :system do
+  before do
+    @user = FactoryBot.create(:user)
+  end
+
+  context 'アカウントが削除できるとき' do
+    it 'ログインしてマイページへ遷移し退会ボタンをクリックすると退会できる' do
+      # ログインする
+      sign_in(@user)
+      # ドロップダウンメニューをクリック
+      find("button[data-toggle='dropdown']").click
+      # マイページをクリック
+      find_link("マイページ", href: user_profile_path(@user)).click
+      # 退会するをクリック
+      find_link("退会する", href: "#").click
+      # 削除をクリックするとユーザーが削除される
+      expect{ find_link("削除", href: "/users").click }.to change{ User.count }.by(-1)
+      # トップページへ遷移
+      expect(current_path).to eq root_path
+      # 非ログイン状態であることを確認（ログインボタンの確認）
+      expect(page).to have_content("ログイン")
+    end
+  end
+end
