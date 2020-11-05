@@ -22,4 +22,20 @@ RSpec.describe "メッセージ新規投稿", type: :system do
       expect(page).to have_content(@message.text)
     end
   end
+
+  context 'メッセージ新規投稿ができないとき' do
+    it '誤った情報では投稿できずにタスク詳細ページに戻ってくる' do
+      # ログイン
+      sign_in(@task.user)
+      # マイページのタスクをクリック
+      find_link(href: "/tasks/#{@task.id}").click
+      # フォームにメッセージを入力
+      fill_in "message_text", with: ""
+      # コメントボタンをクリック。保存されない
+      expect{ find("input[name='commit']").click }.to change{ Message.count }.by(0)
+      # メッセージログが更新されない
+      expect(current_path).to eq "/tasks/#{@task.id}/messages"
+      expect(page).to have_no_content(@message.text)
+    end
+  end
 end
