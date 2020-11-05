@@ -18,7 +18,7 @@
     </div>
     <%# コミット部分 %>
     <div class="px-2 py-2 mt-3 shadow rounded">
-      <h4 class="m-0"><b>コミット</b></h4>
+      <h4 class="m-0"><i class="fas fa-clipboard-list"></i> <b>コミット</b></h4>
       <%# コミットフォーム %>
       <% if @task.user_id == current_user.id %>
         <%= render partial: '/shared/error_messages', locals: { model: @commit } %>
@@ -35,21 +35,21 @@
   <div class="sub-items-wrapper col-lg-4 mb-2">
     <%# タスクの目的 %>
     <div class="mb-5">
-      <h5 class="border-b-dg"><b>目的</b></h5>
+      <h5 class="border-b-dg"><i class="fas fa-flag"></i> <b>目的</b></h5>
       <div class="p-0 m-0 over-flow-wrap fs-15">
         <%= simple_format(h(@task.purpose)) %>
       </div>
     </div>
     <%# タスクのゴール %>
     <div class="mb-5">
-      <h5 class="border-b-dg"><b>ゴール</b></h5>
+      <h5 class="border-b-dg"><i class="fas fa-bullseye"></i> <b>ゴール</b></h5>
       <div class="p-0 m-0 over-flow-wrap fs-15">
         <%= simple_format(h(@task.goal)) %>
       </div>
     </div>
     <%# レビュアーー情報を表示 %>
     <div class="mb-5">
-      <h5 class="border-b-dg"><b>レビュアー</b></h5>
+      <h5 class="border-b-dg"><i class="fas fa-users"></i> <b>レビュアー</b></h5>
       <ul class="mb-1 pl-0 list-unstyled">
         <%# レビュアー一覧 %>
         <% @permissions.each do |permission| %>
@@ -79,7 +79,7 @@
     <%# /レビュアーー情報を表示 %>
     <%# メッセージ部分%>
     <div class="mb-5">
-      <h5 class="border-b-dg"><b>チャット</b></h5>
+      <h5 class="border-b-dg"><i class="fas fa-comments"></i> <b>チャット</b></h5>
       <%# メッセージリスト %>
       <div>
         <ul class="p-0 list-unstyled over-flow-wrap">
