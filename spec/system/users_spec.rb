@@ -107,3 +107,35 @@ RSpec.describe "ログイン", type: :system do
     end
   end
 end
+
+RSpec.describe "アカウント情報編集", type: :system do
+  before do
+    @user = FactoryBot.create(:user)
+    @new_user_info = FactoryBot.build(:user)
+  end
+
+  context 'アカウント情報が編集できるとき' do
+    it '正しい情報が入力されれば編集できマイページへ移動' do
+      # ログインする
+      sign_in(@user)
+      # ドロップダウンメニューをクリック
+      find("button[data-toggle='dropdown']").click
+      # アカウント情報編集をクリック
+      find_link("アカウント情報編集", href: edit_user_registration_path).click
+      # 新しい情報を入力する
+      fill_in "user_nickname", with: @new_user_info.nickname
+      fill_in "user_email", with: @new_user_info.email
+      fill_in "user_password", with: @new_user_info.password
+      fill_in "user_password_confirmation", with: @new_user_info.password_confirmation
+      # 現在のパスワードを入力
+      fill_in "user_current_password", with: @user.password
+      # 変更するをクリック。カウントが変わらないことを確認
+      expect{ find("input[name='commit']").click }.to change{ User.count }.by(0)
+      # マイページへの遷移を確認
+      expect(current_path).to eq user_profile_path(@user)
+      # 変更された情報が記載されているか確認
+      expect(page).to have_content(@new_user_info.nickname)
+      expect(page).to have_content(@new_user_info.email)
+    end
+  end
+end
