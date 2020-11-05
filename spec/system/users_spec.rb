@@ -32,4 +32,26 @@ RSpec.describe "ユーザー新規登録", type: :system do
       expect(page).to have_no_content("新規登録")
     end
   end
+
+  context 'ユーザー新規登録ができないとき' do
+    it '誤った情報ではユーザー新規登録できずに新規登録ページへ戻ってくる' do
+      # トップページへアクセス
+      visit root_path
+      # 新規登録ボタンを確認
+      expect(page).to have_content("新規登録")
+      # 新規登録ボタンをクリック
+      find_link("新規登録", href: new_user_registration_path).click
+      # パスを確認
+      expect(current_path).to eq new_user_registration_path
+      # フォームに不正な値を入力
+      fill_in "user_nickname", with: ""
+      fill_in "user_email", with: ""
+      fill_in "user_password", with: ""
+      fill_in "user_password_confirmation", with: ""
+      # 登録するを押しても登録されない
+      expect{ find("input[name='commit']").click }.to change{ User.count }.by(0)
+      # ページ遷移せず新規登録ページに戻される
+      expect(current_path).to eq '/users'
+    end
+  end
 end
