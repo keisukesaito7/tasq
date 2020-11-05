@@ -76,4 +76,23 @@ RSpec.describe "タスク編集", type: :system do
       expect(page).to have_content(@new_task_info.goal)
     end
   end
+
+  context 'タスク編集ができないとき' do
+    it '誤った情報では編集できずに編集ページに戻ってくる' do
+      # ログイン
+      sign_in(@user)
+      # タスク投稿
+      task_create(@user, @task)
+      # タスク編集ボタンをクリック
+      find_link(href: edit_task_path(@var_for_id)).click
+      # フォームに値を入力
+      fill_in "task_title", with: ""
+      fill_in "task_purpose", with: ""
+      fill_in "task_goal", with: ""
+      # 更新をクリック
+      expect{ find("input[name='commit']").click }.to change{ Task.count }.by(0)
+      # ページ遷移せず編集ページに戻ってくる
+      expect(current_path).to eq "/tasks/#{@var_for_id.id}"
+    end
+  end
 end
