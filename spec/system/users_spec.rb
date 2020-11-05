@@ -138,4 +138,24 @@ RSpec.describe "アカウント情報編集", type: :system do
       expect(page).to have_content(@new_user_info.email)
     end
   end
+
+  context 'アカウント情報が編集できないとき' do
+    it '誤った情報では更新できずに編集ページへ戻ってくる' do
+      # ログインする
+      sign_in(@user)
+      # ドロップダウンメニューをクリック
+      find("button[data-toggle='dropdown']").click
+      # アカウント情報編集をクリック
+      find_link("アカウント情報編集", href: edit_user_registration_path).click
+      # 誤った情報を入力する
+      fill_in "user_nickname", with: ""
+      fill_in "user_email", with: ""
+      # 現在のパスワードを入力
+      fill_in "user_current_password", with: @user.password
+      # 変更するをクリック。カウントが変わらないことを確認
+      expect{ find("input[name='commit']").click }.to change{ User.count }.by(0)
+      # ページ遷移せず編集ページに戻される
+      expect(current_path).to eq '/users'
+    end
+  end
 end
