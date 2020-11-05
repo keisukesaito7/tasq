@@ -64,4 +64,21 @@ RSpec.describe "コミット編集", type: :system do
       expect(page).to have_content(@new_commit.content)
     end
   end
+
+  context 'コミット編集ができないとき' do
+    it '誤った情報が入力されれば更新されず編集ページに戻ってくる' do
+      # ログイン
+      sign_in(@commit.task.user)
+      # マイページのタスクをクリック
+      find_link(href: "/tasks/#{@commit.task.id}").click
+      # コミット編集ボタンをクリック
+      find("svg[data-linkId='commit-edit']").click
+      # フォームに値を入力
+      fill_in "commit_content", with: ""
+      # 更新をクリック。レコード数が変動しないことを確認
+      expect{ find("button[id='submit-commit']").click }.to change{ Commit.count }.by(0)
+      # ページ遷移せず編集ページに戻ってくる
+      expect(current_path).to eq "/tasks/#{@commit.task.id}/commits/#{@commit.id}"
+    end
+  end
 end
