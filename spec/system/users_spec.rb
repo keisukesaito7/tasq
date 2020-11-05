@@ -159,3 +159,23 @@ RSpec.describe "アカウント情報編集", type: :system do
     end
   end
 end
+
+RSpec.describe "マイページへ遷移", type: :system do
+  before do
+    @user = FactoryBot.create(:user)
+  end
+
+  context 'マイページへ遷移できるとき' do
+    it 'ログインしてマイページへ遷移するとnicknameとemailを確認できる' do
+      # ログインする
+      sign_in(@user)
+      # ドロップダウンメニューをクリック
+      find("button[data-toggle='dropdown']").click
+      # マイページをクリック
+      find_link("マイページ", href: user_profile_path(@user)).click
+      # ログインユーザーの情報が記載されているか確認
+      expect(page).to have_content(@user.nickname)
+      expect(page).to have_content(@user.email)
+    end
+  end
+end
