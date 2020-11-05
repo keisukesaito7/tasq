@@ -82,3 +82,26 @@ RSpec.describe "コミット編集", type: :system do
     end
   end
 end
+
+RSpec.describe "コミット削除", type: :system do
+  before do
+    @commit = FactoryBot.create(:commit)
+  end
+
+  context 'コミット削除ができるとき' do
+    it 'コミットの削除ボタンをクリックすると削除できタスク詳細ページへ遷移する' do
+      # ログイン
+      sign_in(@commit.task.user)
+      # マイページのタスクをクリック
+      find_link(href: "/tasks/#{@commit.task.id}").click
+      # コミット削除ボタンをクリック
+      find("svg[data-linkId='commit-destroy']").click
+      # モーダルの削除ボタンをクリック
+      expect{ find_link(href: "/tasks/#{@commit.task.id}/commits/#{@commit.id}").click }.to change{ Commit.count }.by(-1)
+      # タスク詳細ページへ遷移
+      expect(current_path).to eq task_path(@commit.task)
+      # コミットが存在しないことを確認
+      expect(page).to have_no_content(@commit.content)
+    end
+  end
+end
