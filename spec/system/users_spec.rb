@@ -26,8 +26,8 @@ RSpec.describe "ユーザー新規登録", type: :system do
       expect(current_path).to eq root_path
       # ヘッダーにログインユーザーの名前があることを確認
       expect(page).to have_content(@user.nickname)
-      # ヘッダーにテストログイン、ログイン、新規登録のボタンがないことを確認
-      expect(page).to have_no_content("テストログイン")
+      # ヘッダーにゲストログイン、ログイン、新規登録のボタンがないことを確認
+      expect(page).to have_no_content("ゲストログイン")
       expect(page).to have_no_content("ログイン")
       expect(page).to have_no_content("新規登録")
     end
@@ -80,8 +80,8 @@ RSpec.describe "ログイン", type: :system do
       expect(current_path).to eq root_path
       # ヘッダーにログインユーザーの名前があることを確認
       expect(page).to have_content(@user.nickname)
-      # ヘッダーにテストログイン、ログイン、新規登録のボタンがないことを確認
-      expect(page).to have_no_content("テストログイン")
+      # ヘッダーにゲストログイン、ログイン、新規登録のボタンがないことを確認
+      expect(page).to have_no_content("ゲストログイン")
       expect(page).to have_no_content("ログイン")
       expect(page).to have_no_content("新規登録")
     end
