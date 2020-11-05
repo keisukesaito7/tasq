@@ -49,19 +49,18 @@ end
 
 RSpec.describe "タスク編集", type: :system do
   before do
-    @user = FactoryBot.create(:user)
-    @task = FactoryBot.build(:task)
+    @task = FactoryBot.create(:task)
     @new_task_info = FactoryBot.build(:task)
   end
 
   context 'タスク編集ができるとき' do
     it '正しい情報が入力されれば編集されタスク詳細ページへ移動' do
       # ログイン
-      sign_in(@user)
-      # タスク投稿
-      task_create(@user, @task)
+      sign_in(@task.user)
+      # マイページのタスクをクリック
+      find_link(href: "/tasks/#{@task.id}").click
       # タスク編集ボタンをクリック
-      find_link(href: edit_task_path(@var_for_id)).click
+      find_link(href: "/tasks/#{@task.id}/edit").click
       # フォームに値を入力
       fill_in "task_title", with: @new_task_info.title
       fill_in "task_purpose", with: @new_task_info.purpose
@@ -69,7 +68,7 @@ RSpec.describe "タスク編集", type: :system do
       # 更新をクリック
       expect{ find("input[name='commit']").click }.to change{ Task.count }.by(0)
       # タスク詳細ページへ遷移
-      expect(current_path).to eq task_path(@var_for_id)
+      expect(current_path).to eq task_path(@task)
       # タスク内容の更新を確認
       expect(page).to have_content(@new_task_info.title)
       expect(page).to have_content(@new_task_info.purpose)
@@ -80,11 +79,11 @@ RSpec.describe "タスク編集", type: :system do
   context 'タスク編集ができないとき' do
     it '誤った情報では編集できずに編集ページに戻ってくる' do
       # ログイン
-      sign_in(@user)
-      # タスク投稿
-      task_create(@user, @task)
+      sign_in(@task.user)
+      # マイページのタスクをクリック
+      find_link(href: "/tasks/#{@task.id}").click
       # タスク編集ボタンをクリック
-      find_link(href: edit_task_path(@var_for_id)).click
+      find_link(href: "/tasks/#{@task.id}/edit").click
       # フォームに値を入力
       fill_in "task_title", with: ""
       fill_in "task_purpose", with: ""
@@ -92,27 +91,26 @@ RSpec.describe "タスク編集", type: :system do
       # 更新をクリック
       expect{ find("input[name='commit']").click }.to change{ Task.count }.by(0)
       # ページ遷移せず編集ページに戻ってくる
-      expect(current_path).to eq "/tasks/#{@var_for_id.id}"
+      expect(current_path).to eq "/tasks/#{@task.id}"
     end
   end
 end
 
 RSpec.describe "タスク削除", type: :system do
   before do
-    @user = FactoryBot.create(:user)
-    @task = FactoryBot.build(:task)
+    @task = FactoryBot.create(:task)
   end
 
   context 'タスク削除ができるとき' do
     it 'タスク詳細ページの削除ボタンをクリックすると削除できマイページへ遷移する' do
       # ログイン
-      sign_in(@user)
-      # タスク投稿
-      task_create(@user, @task)
+      sign_in(@task.user)
+      # マイページのタスクをクリック
+      find_link(href: "/tasks/#{@task.id}").click
       # タスク削除ボタンをクリック
       find("button[data-target='#taskDestroyModal']").click
       # モーダルの削除ボタンをクリック
-      expect{ find_link("削除", href: "/tasks/#{@var_for_id.id}").click }.to change{ Task.count }.by(-1)
+      expect{ find_link("削除", href: "/tasks/#{@task.id}").click }.to change{ Task.count }.by(-1)
       # トップページへ遷移
       expect(current_path).to eq root_path
       # タスクが存在しないことを確認
