@@ -22,4 +22,20 @@ RSpec.describe "コミット新規投稿", type: :system do
       expect(page).to have_content(@commit.content)
     end
   end
+
+  context 'コミット新規投稿ができないとき' do
+    it '誤った情報では投稿できずにタスク詳細ページに戻ってくる' do
+      # ログイン
+      sign_in(@task.user)
+      # マイページのタスクをクリック
+      find_link(href: "/tasks/#{@task.id}").click
+      # フォームにコミットを入力
+      fill_in "commit_content", with: ""
+      # 追加ボタンをクリック。保存されない。
+      expect{ find("button[id='submit-commit']").click }.to change{ Commit.count }.by(0)
+      # コミットログが更新されない
+      expect(current_path).to eq "/tasks/#{@task.id}/commits"
+      expect(page).to have_no_content(@commit.content)
+    end
+  end
 end
