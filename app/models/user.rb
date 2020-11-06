@@ -13,8 +13,15 @@ class User < ApplicationRecord
   has_many :messages, dependent: :delete_all
 
   def self.guest
-    find_or_create_by!(email: 'guest@test.com') do |user|
-      user.nickname = 'テストユーザー'
+    find_or_create_by!(email: 'guest1@gmail.com') do |user|
+      user.nickname = 'guest1'
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
+
+  def self.guest_beta
+    find_or_create_by!(email: 'guest2@gmail.com') do |user|
+      user.nickname = 'guest2'
       user.password = SecureRandom.urlsafe_base64
     end
   end

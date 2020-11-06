@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     registrations: "users/registrations"
   }
   devise_scope :user do
-    post 'users/guest_sign_in', to: 'users/test_sessions#new_guest'
+    post 'users/guest_sign_in', to: 'users/guest_sessions#new_guest'
+    post 'users/guest_beta_sign_in', to: 'users/guest_sessions#new_guest_beta'
   end
   get 'users/:id/profile', to: 'users#show', as: 'user_profile'
   root to: 'home#top'
