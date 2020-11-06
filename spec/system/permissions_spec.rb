@@ -34,5 +34,21 @@ RSpec.describe "タスク閲覧許可", type: :system do
       expect(current_path).to eq task_path(@task)
     end
   end
-  
+
+  context 'タスク閲覧許可ができないとき' do
+    it 'ユーザーが存在しなければタスク閲覧を許可できず、タスク詳細ページへ戻ってくる' do
+      # タスクオーナーでログイン
+      sign_in(@task.user)
+      # マイページのタスクをクリック
+      find_link(href: "/tasks/#{@task.id}").click
+      # レビュアー検索ボタンをクリック
+      find("button[data-target='#collapseUserIdForm']").click
+      # フォームにユーザーIDを入力
+      fill_in "permission_user_id", with: ""
+      # 許可をクリック。カウントが変わらないことを確認
+      expect{ find("input[value='許可']").click }.to change{ Permission.count }.by(0)
+      # ページ遷移せずタスク詳細ページへ戻される
+      expect(current_path).to eq "/tasks/#{@task.id}/permissions"
+    end
+  end  
 end
