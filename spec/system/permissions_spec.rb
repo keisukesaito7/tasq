@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "タスク閲覧許可", type: :system do
+RSpec.describe 'タスク閲覧許可', type: :system do
   before do
     @task = FactoryBot.create(:task)
     @reviewer = FactoryBot.create(:user)
@@ -15,15 +15,15 @@ RSpec.describe "タスク閲覧許可", type: :system do
       # レビュアー検索ボタンをクリック
       find("button[data-target='#collapseUserIdForm']").click
       # フォームにユーザーIDを入力
-      fill_in "permission_user_id", with: @reviewer.id
+      fill_in 'permission_user_id', with: @reviewer.id
       # 許可をクリック
-      expect{ find("input[value='許可']").click }.to change{ Permission.count }.by(1)
+      expect { find("input[value='許可']").click }.to change { Permission.count }.by(1)
       # レビュアー名が追加されたことを確認
       expect(page).to have_content(@reviewer.nickname)
       # ログアウトのためドロップダウンメニューをクリック
       find("button[data-toggle='dropdown']").click
       # ログアウトのリンクをクリック
-      find_link("ログアウト", href: "/users/sign_out").click
+      find_link('ログアウト', href: '/users/sign_out').click
       # レビュアーでログイン
       sign_in(@reviewer)
       # 閲覧許可されたタスクがマイページに存在することを確認
@@ -44,16 +44,16 @@ RSpec.describe "タスク閲覧許可", type: :system do
       # レビュアー検索ボタンをクリック
       find("button[data-target='#collapseUserIdForm']").click
       # フォームにユーザーIDを入力
-      fill_in "permission_user_id", with: ""
+      fill_in 'permission_user_id', with: ''
       # 許可をクリック。カウントが変わらないことを確認
-      expect{ find("input[value='許可']").click }.to change{ Permission.count }.by(0)
+      expect { find("input[value='許可']").click }.to change { Permission.count }.by(0)
       # ページ遷移せずタスク詳細ページへ戻される
       expect(current_path).to eq "/tasks/#{@task.id}/permissions"
     end
-  end  
+  end
 end
 
-RSpec.describe "タスク閲覧権限削除", type: :system do
+RSpec.describe 'タスク閲覧権限削除', type: :system do
   before do
     @task = FactoryBot.create(:task)
     @reviewer = FactoryBot.create(:user)
@@ -69,13 +69,13 @@ RSpec.describe "タスク閲覧権限削除", type: :system do
       # 閲覧を許可されたユーザーの名前があることを確認
       expect(page).to have_content(@reviewer.nickname)
       # レビュアー名をクリックすると権限が削除される
-      expect{ find_link(href: "/tasks/#{@task.id}/permissions/#{@permission.id}").click }.to change{ Permission.count }.by(-1)
+      expect { find_link(href: "/tasks/#{@task.id}/permissions/#{@permission.id}").click }.to change { Permission.count }.by(-1)
       # レビュアー名が削除されたことを確認
       expect(page).to have_no_content(@reviewer.nickname)
       # ログアウトのためドロップダウンメニューをクリック
       find("button[data-toggle='dropdown']").click
       # ログアウトのリンクをクリック
-      find_link("ログアウト", href: "/users/sign_out").click
+      find_link('ログアウト', href: '/users/sign_out').click
       # レビュアーでログイン
       sign_in(@reviewer)
       # 閲覧許可されたタスクがマイページから削除されたことを確認

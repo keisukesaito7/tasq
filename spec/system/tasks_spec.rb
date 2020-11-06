@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "タスク新規投稿", type: :system do
+RSpec.describe 'タスク新規投稿', type: :system do
   before do
     @user = FactoryBot.create(:user)
     @task = FactoryBot.build(:task)
@@ -11,13 +11,13 @@ RSpec.describe "タスク新規投稿", type: :system do
       # ログイン
       sign_in(@user)
       # 新規作成をクリック
-      find_link("新規作成", href: new_task_path).click
+      find_link('新規作成', href: new_task_path).click
       # フォームに値を入力
       fill_in 'task_title', with: @task.title
       fill_in 'task_purpose', with: @task.purpose
       fill_in 'task_goal', with: @task.goal
       # 作成をクリック
-      expect{ find("input[name='commit']").click }.to change{ Task.count }.by(1)
+      expect { find("input[name='commit']").click }.to change { Task.count }.by(1)
       # 保存したタスクを取得
       task = @user.tasks.find_by(title: @task.title)
       # タスク詳細ページへ遷移
@@ -34,20 +34,20 @@ RSpec.describe "タスク新規投稿", type: :system do
       # ログイン
       sign_in(@user)
       # 新規作成をクリック
-      find_link("新規作成", href: new_task_path).click
+      find_link('新規作成', href: new_task_path).click
       # フォームに値を入力
-      fill_in 'task_title', with: ""
-      fill_in 'task_purpose', with: ""
-      fill_in 'task_goal', with: ""
+      fill_in 'task_title', with: ''
+      fill_in 'task_purpose', with: ''
+      fill_in 'task_goal', with: ''
       # 作成をクリック
-      expect{ find("input[name='commit']").click }.to change{ Task.count }.by(0)
+      expect { find("input[name='commit']").click }.to change { Task.count }.by(0)
       # ページ遷移せず新規投稿ページに戻される
       expect(current_path).to eq '/tasks'
     end
   end
 end
 
-RSpec.describe "タスク編集", type: :system do
+RSpec.describe 'タスク編集', type: :system do
   before do
     @task = FactoryBot.create(:task)
     @new_task_info = FactoryBot.build(:task)
@@ -62,11 +62,11 @@ RSpec.describe "タスク編集", type: :system do
       # タスク編集ボタンをクリック
       find_link(href: "/tasks/#{@task.id}/edit").click
       # フォームに値を入力
-      fill_in "task_title", with: @new_task_info.title
-      fill_in "task_purpose", with: @new_task_info.purpose
-      fill_in "task_goal", with: @new_task_info.goal
+      fill_in 'task_title', with: @new_task_info.title
+      fill_in 'task_purpose', with: @new_task_info.purpose
+      fill_in 'task_goal', with: @new_task_info.goal
       # 更新をクリック
-      expect{ find("input[name='commit']").click }.to change{ Task.count }.by(0)
+      expect { find("input[name='commit']").click }.to change { Task.count }.by(0)
       # タスク詳細ページへ遷移
       expect(current_path).to eq task_path(@task)
       # タスク内容の更新を確認
@@ -85,18 +85,18 @@ RSpec.describe "タスク編集", type: :system do
       # タスク編集ボタンをクリック
       find_link(href: "/tasks/#{@task.id}/edit").click
       # フォームに値を入力
-      fill_in "task_title", with: ""
-      fill_in "task_purpose", with: ""
-      fill_in "task_goal", with: ""
+      fill_in 'task_title', with: ''
+      fill_in 'task_purpose', with: ''
+      fill_in 'task_goal', with: ''
       # 更新をクリック
-      expect{ find("input[name='commit']").click }.to change{ Task.count }.by(0)
+      expect { find("input[name='commit']").click }.to change { Task.count }.by(0)
       # ページ遷移せず編集ページに戻ってくる
       expect(current_path).to eq "/tasks/#{@task.id}"
     end
   end
 end
 
-RSpec.describe "タスク削除", type: :system do
+RSpec.describe 'タスク削除', type: :system do
   before do
     @task = FactoryBot.create(:task)
   end
@@ -110,7 +110,7 @@ RSpec.describe "タスク削除", type: :system do
       # タスク削除ボタンをクリック
       find("button[data-target='#taskDestroyModal']").click
       # モーダルの削除ボタンをクリック
-      expect{ find_link("削除", href: "/tasks/#{@task.id}").click }.to change{ Task.count }.by(-1)
+      expect { find_link('削除', href: "/tasks/#{@task.id}").click }.to change { Task.count }.by(-1)
       # トップページへ遷移
       expect(current_path).to eq root_path
       # タスクが存在しないことを確認
