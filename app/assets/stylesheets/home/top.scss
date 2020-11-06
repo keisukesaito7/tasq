@@ -1,0 +1,26 @@
+.top-page {
+  color: white;
+  background-image: image-url("light-top.png");
+  width: 100vw;
+  height: calc(100vh - 60px);
+  position: absolute;
+  left: 0px;
+  top: 60px;
+  background-size: cover;
+}
+
+.top-page-title {
+  font-size: 100px;
+}
+
+.top-page-discription {
+  
+}
+
+.top-page-btns-wrapper {
+ margin-top: 100px; 
+}
+
+.top-page-link {
+  margin-bottom: 30px;
+}

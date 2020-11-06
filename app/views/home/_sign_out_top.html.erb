@@ -1,6 +1,24 @@
-<div class="welcome">
-  <h1>Home#top</h1>
-  <p>Find me in app/views/home/top.html.erb</p>
-  <i class="fab fa-accessible-icon"></i>
-  <button type="button" class="btn btn-secondary">Secondary</button>
+<div class="top-page">
+  <div class="container pt-3">
+    <h1 class="top-page-title text-center">Task and Questions</h1>
+    <h3 class="top-page-discription text-center">
+      〜課題解決に特化したタスク管理アプリ〜
+    </h3>
+    <div class="top-page-btns-wrapper">
+      <div class="page-btn-wrapper text-center">
+        <%= link_to new_user_registration_path, class: "btn btn-light w-50 top-page-link" do %>
+          新規登録
+        <% end %>
+      </div>
+      <div class="page-btn-wrapper my-2 text-center">
+        <%= link_to new_user_session_path, class: "btn btn-light w-50 top-page-link" do %>
+          ログイン
+        <% end %>
+      </div>
+      <div class="page-btn-wrapper my-2 text-center">
+        <%= link_to users_guest_sign_in_path, class: "btn btn-info w-50 top-page-link", method: :post do %>
+          ゲストログイン
+        <% end %>
+      </div>
+    </div>
 </div>
