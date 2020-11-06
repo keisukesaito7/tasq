@@ -28,9 +28,6 @@
             </div>
           </div>
         <% else %>
-          <%= link_to users_guest_sign_in_path, method: :post, class: "btn btn-info" do %>
-            <i class="fas fa-sign-in-alt"></i> ゲストログイン
-          <% end %>
           <%= link_to new_user_session_path, class: "btn btn-light" do %>
             <i class="fas fa-sign-in-alt"></i> ログイン
           <% end %>
@@ -41,5 +38,4 @@
       </div>
     </div>
   </div>
-
 </header>
