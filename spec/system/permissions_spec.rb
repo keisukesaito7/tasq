@@ -52,3 +52,38 @@ RSpec.describe "タスク閲覧許可", type: :system do
     end
   end  
 end
+
+RSpec.describe "タスク閲覧権限削除", type: :system do
+  before do
+    @task = FactoryBot.create(:task)
+    @reviewer = FactoryBot.create(:user)
+    @permission = Permission.create(task_id: @task.id, user_id: @reviewer.id)
+  end
+
+  context '権限を削除できるとき' do
+    it 'タスクオーナーは閲覧権限を削除でき、権限を削除されたユーザーはタスク詳細ページにアクセスできない' do
+      # タスクオーナーでログイン
+      sign_in(@task.user)
+      # マイページのタスクをクリック
+      find_link(href: "/tasks/#{@task.id}").click
+      # 閲覧を許可されたユーザーの名前があることを確認
+      expect(page).to have_content(@reviewer.nickname)
+      # レビュアー名をクリックすると権限が削除される
+      expect{ find_link(href: "/tasks/#{@task.id}/permissions/#{@permission.id}").click }.to change{ Permission.count }.by(-1)
+      # レビュアー名が削除されたことを確認
+      expect(page).to have_no_content(@reviewer.nickname)
+      # ログアウトのためドロップダウンメニューをクリック
+      find("button[data-toggle='dropdown']").click
+      # ログアウトのリンクをクリック
+      find_link("ログアウト", href: "/users/sign_out").click
+      # レビュアーでログイン
+      sign_in(@reviewer)
+      # 閲覧許可されたタスクがマイページから削除されたことを確認
+      expect(page).to have_no_content(@task.title)
+      expect(page).to have_no_content(@task.user.nickname)
+      # URLから直接アクセスしてもマイページにリダイレクトされる
+      visit task_path(@task)
+      expect(current_path).to eq root_path
+    end
+  end
+end
