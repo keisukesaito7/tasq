@@ -89,7 +89,7 @@
               <p class="each-message-info"><%= "by (#{message.user.nickname})" %></p>
               <% if message.user_id == current_user.id %>
                 <%= link_to task_message_path(@task, message), method: :delete do %>
-                  <i class="fas fa-trash-alt float-right", style="font-size: 13px; color: gray;"></i>
+                  <i class="fas fa-trash-alt float-right", style="font-size: 13px; color: gray;" data-linkId="message-destroy"></i>
                 <% end %>
               <% end %>
               <%= simple_format(h(message.text)) %>

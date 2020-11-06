@@ -39,3 +39,26 @@ RSpec.describe "メッセージ新規投稿", type: :system do
     end
   end
 end
+
+RSpec.describe "メッセージ削除", type: :system do
+  before do
+    @task = FactoryBot.create(:task)
+    # taskオーナーとしてメッセージを作成
+    @message = Message.create(text: Faker::Lorem.sentence, user_id: @task.user_id, task_id: @task.id)
+  end
+
+  context 'メッセージ削除ができるとき' do
+    it 'メッセージの削除ボタンをクリックすると削除できタスク詳細ページへ遷移する' do
+      # ログイン
+      sign_in(@task.user)
+      # マイページのタスクをクリック
+      find_link(href: "/tasks/#{@task.id}").click
+      # メッセージ削除ボタンをクリック
+      expect{ find("svg[data-linkId='message-destroy']").click }.to change{ Message.count }.by(-1)
+      # タスク詳細ページへ遷移
+      expect(current_path).to eq task_path(@task)
+      # メッセージが存在しないことを確認
+      expect(page).to have_no_content(@message.text)
+    end
+  end
+end
