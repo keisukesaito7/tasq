@@ -18,7 +18,7 @@
     </div>
     <%# コミット部分 %>
     <div class="px-2 py-2 mt-3 shadow rounded">
-      <h4 class="m-0"><i class="fas fa-clipboard-list"></i> <b>コミット</b></h4>
+      <h4 class="m-0 py-2"><i class="fas fa-clipboard-list"></i> <b>コミット</b></h4>
       <%# コミットフォーム %>
       <% if @task.user_id == current_user.id %>
         <%= render partial: '/shared/error_messages', locals: { model: @commit } %>
