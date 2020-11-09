@@ -11,10 +11,8 @@ RSpec.describe 'ユーザー新規登録', type: :system do
       visit root_path
       # 新規登録ボタンを確認
       expect(page).to have_content('新規登録')
-      # 新規登録ボタンをクリック
-      find_link('新規登録', href: new_user_registration_path).click
-      # パスを確認
-      expect(current_path).to eq new_user_registration_path
+      # 新規登録ページへ遷移
+      visit new_user_registration_path
       # フォームに値を入力
       fill_in 'user_nickname', with: @user.nickname
       fill_in 'user_email', with: @user.email
@@ -39,10 +37,8 @@ RSpec.describe 'ユーザー新規登録', type: :system do
       visit root_path
       # 新規登録ボタンを確認
       expect(page).to have_content('新規登録')
-      # 新規登録ボタンをクリック
-      find_link('新規登録', href: new_user_registration_path).click
-      # パスを確認
-      expect(current_path).to eq new_user_registration_path
+      # 新規登録ページへ遷移
+      visit new_user_registration_path
       # フォームに不正な値を入力
       fill_in 'user_nickname', with: ''
       fill_in 'user_email', with: ''
@@ -67,10 +63,8 @@ RSpec.describe 'ログイン', type: :system do
       visit root_path
       # ログインボタンを確認
       expect(page).to have_content('ログイン')
-      # ログインボタンをクリック
-      find_link('ログイン', href: new_user_session_path).click
-      # パスを確認
-      expect(current_path).to eq new_user_session_path
+      # ログインページへ遷移
+      visit new_user_session_path
       # フォームに値を入力
       fill_in 'user_email', with: @user.email
       fill_in 'user_password', with: @user.password
@@ -93,10 +87,8 @@ RSpec.describe 'ログイン', type: :system do
       visit root_path
       # ログインボタンを確認
       expect(page).to have_content('ログイン')
-      # ログインボタンをクリック
-      find_link('ログイン', href: new_user_session_path).click
-      # パスを確認
-      expect(current_path).to eq new_user_session_path
+      # ログインページへ遷移
+      visit new_user_session_path
       # フォームに値を入力
       fill_in 'user_email', with: ''
       fill_in 'user_password', with: ''

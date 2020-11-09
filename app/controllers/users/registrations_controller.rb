@@ -3,6 +3,13 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_action :check_guest, only: :destroy
+
+  def check_guest
+    if resource.email == 'guest1@gmail.com' || resource.email == 'guest2@gmail.com'
+      redirect_to user_profile_path(current_user), alert: 'ゲストユーザーは削除できません。'
+    end
+  end
 
   # GET /resource/sign_up
   # def new
