@@ -7,7 +7,7 @@ https://tasq-r.herokuapp.com/
 
 <br>
 
-# :pushpin: アプリケーション概要
+## :pushpin: アプリケーション概要
 
 日々の仕事に「目的意識」を持って取り組む。
 これを実現できるよう設計されたタスク管理アプリです。
@@ -20,7 +20,7 @@ Ruby on Railsで制作しました。
 
 <br>
 
-# :pushpin: 機能・利用方法
+## :pushpin: 機能・利用方法
 
 ### :heavy_check_mark: かんたんログイン
 
@@ -60,7 +60,7 @@ Ruby on Railsで制作しました。
 
 <br>
 
-# :pushpin: 目指した課題解決
+## :pushpin: 目指した課題解決
 
 **大学の研究室に所属する学生が、「自立」した研究を行えるようになること**を目指しています。
 
@@ -105,7 +105,7 @@ Ruby on Railsで制作しました。
 
 <br>
 
-# :pushpin: 使用技術
+## :pushpin: 使用技術
 
 * Ruby 2.6.5
 * Ruby on Rails 6.0.3.4
@@ -117,7 +117,7 @@ Ruby on Railsで制作しました。
 
 <br>
 
-# :pushpin: 実装予定の機能
+## :pushpin: 実装予定の機能
 
 * ルーム作成機能 : タスク閲覧権限をルーム単位で管理できる機能です
 * タグ付け機能 : 関連するタスクをまとめる機能です。ルーム作成機能実装後に実装します
@@ -125,6 +125,19 @@ Ruby on Railsで制作しました。
 
 <br>
 
-# :pushpin: データベース設計
+## :pushpin: ローカル環境へのインストール方法
+
+```
+% git clone https://github.com/keisukesaito7/tasq.git
+% cd tasq
+% bundle install
+% yarn install
+% rails db:create
+% rails db:migrate
+```
+
+<br>
+
+## :pushpin: データベース設計
 
 * https://gyazo.com/bd1d61d7b9eca80383c4f3a96930b181
