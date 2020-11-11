@@ -105,6 +105,18 @@ Ruby on Railsで制作しました。
 
 <br>
 
+# :pushpin: 使用技術
+
+* Ruby 2.6.5
+* Ruby on Rails 6.0.3.4
+* Rubocop (コード自動整形)
+* RSpec (単体、結合テスト : 61件)
+* MySQL 5.6
+* Bootstrap 4.3.1
+* Heroku (本番環境)
+
+<br>
+
 # :pushpin: 実装予定の機能
 
 * ルーム作成機能 : タスク閲覧権限をルーム単位で管理できる機能です
