@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: tasq_production
-  username: tasq
-  password: <%= ENV['TASQ_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
