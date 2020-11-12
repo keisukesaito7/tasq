@@ -56,7 +56,8 @@ group :test do
 end
 
 group :production do
-  gem 'rails_12factor'
+  gem 'unicorn', '5.4.1'
+  # gem 'rails_12factor'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
