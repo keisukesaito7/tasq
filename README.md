@@ -1,4 +1,4 @@
-# :pushpin: TasQ - Task & Questions
+# :pushpin: TasQ - Task and Questions
 
 課題解決に特化したタスク管理アプリです。  
 下記ページで公開中です。
