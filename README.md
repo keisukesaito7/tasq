@@ -1,9 +1,13 @@
 # :pushpin: TasQ - Task & Questions
 
 課題解決に特化したタスク管理アプリです。  
-下記ページで公開中です。  
+下記ページで公開中です。
 
 https://www.tasq.site/
+
+[![Image from Gyazo](https://i.gyazo.com/9b59673b50980d9de48725c42dd8cc39.jpg)](https://gyazo.com/9b59673b50980d9de48725c42dd8cc39)
+
+
 
 <br>
 
@@ -119,8 +123,8 @@ Ruby on Railsで制作しました。
 
 * Git/Github
    * 可能な限り現場での利用を想定して管理
-   * マイルストーン、イシューを設定
-   * ブランチ、プルリクエスト、マージを使用
+   * Milestone、Issueを設定
+   * Branch、Pull request、Merge、Pullを使用
 
 <br>
 
