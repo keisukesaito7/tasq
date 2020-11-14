@@ -121,7 +121,7 @@ Ruby on Railsで制作しました。
 
 ### ソースコード管理
 
-* Git/Github
+* Git/GitHub
    * 可能な限り現場での利用を想定して管理
    * Milestone、Issueを設定
    * Branch、Pull request、Merge、Pullを使用
