@@ -128,6 +128,12 @@ Ruby on Railsで制作しました。
 
 <br>
 
+## :pushpin: インフラ構成図
+
+[![Image from Gyazo](https://i.gyazo.com/de237f0c0ec54a60448fe14537fd6532.png)](https://gyazo.com/de237f0c0ec54a60448fe14537fd6532)
+
+<br>
+
 ## :pushpin: 実装予定の機能
 
 * ルーム作成機能 : タスク閲覧権限をルーム単位で管理できる機能です
