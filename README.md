@@ -130,7 +130,7 @@ Ruby on Railsで制作しました。
 
 ## :pushpin: インフラ構成図
 
-[![Image from Gyazo](https://i.gyazo.com/de237f0c0ec54a60448fe14537fd6532.png)](https://gyazo.com/de237f0c0ec54a60448fe14537fd6532)
+[![Image from Gyazo](https://i.gyazo.com/37e3aacfd0106a640ad8f07e758511c3.png)](https://gyazo.com/37e3aacfd0106a640ad8f07e758511c3)
 
 <br>
 
