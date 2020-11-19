@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :messages, only: [:create, :destroy]
     resources :permissions, only: [:create, :destroy]
   end
+  delete 'tasks/:task_id/permissions_reviewer', to: 'permissions#reviewer_destroy', as: 'reviewer_permission_destroy'
   devise_for :users, controllers: {
     sessions: "users/sessions",
     registrations: "users/registrations"
