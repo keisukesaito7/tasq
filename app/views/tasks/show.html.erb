@@ -14,6 +14,13 @@
             <i class="fas fa-trash-alt"></i>
           </button>
         </div>
+      <% else %>
+        <%# レビュアーがタスクを抜けるためのボタン %>
+        <div class="permission-delete-btn">
+          <%= link_to reviewer_permission_destroy_path(@task), method: :delete, class: "btn btn-secondary btn-sm" do %>
+            閲覧を終了
+          <% end %>
+        </div>
       <% end %>
     </div>
     <%# コミット部分 %>
