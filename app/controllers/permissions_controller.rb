@@ -1,6 +1,6 @@
 class PermissionsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :destroy]
-  before_action :set_task, only: [:create, :destroy]
+  before_action :authenticate_user!, only: [:create, :destroy, :reviewer_destroy]
+  before_action :set_task, only: [:create, :destroy, :reviewer_destroy]
   before_action :check_owner, only: [:create, :destroy]
 
   def create
@@ -23,6 +23,15 @@ class PermissionsController < ApplicationController
     permission = Permission.find(params[:id])
     if permission.destroy
       redirect_to task_path(@task)
+    else
+      redirect_to task_path(@task)
+    end
+  end
+
+  def reviewer_destroy
+    permission = Permission.find_by(user_id: current_user.id, task_id: @task.id)
+    if permission.destroy
+      redirect_to root_path
     else
       redirect_to task_path(@task)
     end
