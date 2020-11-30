@@ -2,17 +2,6 @@
   <li class="over-flow-wrap list-unstyled bg-white border-lg rounded px-2 py-2">
     <p style="color: gray; font-size: 15px;">
       <%= l commit.created_at %>
-      <% if current_user.already_liked?(commit.task, commit) %>
-        <%# link_to "#", style: "color: crimson", method: :delete do %>
-          <span class="float-right" style="line-height: 17px;"><%= commit.likes.count %></span>
-          <i class="fas fa-heart float-right mr-2"></i>
-        <%# end %>
-      <% else %>
-        <%= link_to task_commit_likes_path(commit.task, commit), method: :post, style: "color: gray" do %>
-          <span class="float-right" style="line-height: 17px;"><%= commit.likes.count if commit.likes.exists? %></span>
-          <i class="far fa-heart float-right mr-2"></i>
-        <% end %>
-      <% end %>
       <% if @task.user_id == current_user.id %>  
         <%= link_to "#", "data-toggle": "modal", "data-Target": "#commitDestroyModal#{commit.id}", style: "color: gray" do %>
           <i class="fas fa-trash-alt float-right" data-linkId="commit-destroy"></i>
@@ -23,6 +12,21 @@
       <% end %>
     </p>
     <%= simple_format(h(commit.content)) %>
+    <% if current_user.already_liked?(commit.task, commit) %>
+      <div class="likes_done" style="text-align: right;">
+        <%= link_to "#", style: "color: crimson; text-decoration: none;" do %>
+          <i class="fas fa-heart"></i>
+        <% end %>
+        <span style="color: crimson; line-height: 17px;"><%= commit.likes.count %></span>
+      </div>
+    <% else %>
+      <div class="likes" style="text-align: right;">
+        <%= link_to task_commit_likes_path(commit.task, commit), style: "color: gray; text-decoration: none;", method: :post do %>
+          <i class="far fa-heart"></i>
+        <% end %>
+        <span style="color: gray; line-height: 17px;"><%= commit.likes.count if commit.likes.exists? %></span>
+      </div>
+    <% end %>
   </li>
 </div>
 
