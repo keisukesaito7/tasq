@@ -4,11 +4,13 @@
       <%= l commit.created_at %>
       <% if current_user.already_liked?(commit.task, commit) %>
         <%# link_to "#", style: "color: crimson", method: :delete do %>
-          <i class="fas fa-heart float-right"></i>
+          <span class="float-right" style="line-height: 17px;"><%= commit.likes.count %></span>
+          <i class="fas fa-heart float-right mr-2"></i>
         <%# end %>
       <% else %>
         <%= link_to task_commit_likes_path(commit.task, commit), method: :post, style: "color: gray" do %>
-          <i class="far fa-heart float-right"></i>
+          <span class="float-right" style="line-height: 17px;"><%= commit.likes.count if commit.likes.exists? %></span>
+          <i class="far fa-heart float-right mr-2"></i>
         <% end %>
       <% end %>
       <% if @task.user_id == current_user.id %>  
