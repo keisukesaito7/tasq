@@ -1,6 +1,6 @@
 <div class="mb-2">
   <li class="over-flow-wrap list-unstyled bg-white border-lg rounded px-2 py-2">
-    <p style="color: gray; font-size: 15px;">
+    <p class="mb-1" style="color: gray; font-size: 15px;">
       <%= l commit.created_at %>
       <% if @task.user_id == current_user.id %>  
         <%= link_to "#", "data-toggle": "modal", "data-Target": "#commitDestroyModal#{commit.id}", style: "color: gray" do %>
