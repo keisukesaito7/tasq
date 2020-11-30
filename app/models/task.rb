@@ -12,6 +12,7 @@ class Task < ApplicationRecord
   has_many :users, through: :permissions, dependent: :delete_all
   has_many :commits,  dependent: :delete_all
   has_many :messages, dependent: :delete_all
+  has_many :likes
 
   def self.as_reviewer(user)
     joins(:permissions).where(permissions: { user_id: user.id }).includes(:user).order('created_at DESC')
