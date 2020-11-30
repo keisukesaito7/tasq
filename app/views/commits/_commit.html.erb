@@ -2,9 +2,22 @@
   <li class="over-flow-wrap list-unstyled bg-white border-lg rounded px-2 py-2">
     <p style="color: gray; font-size: 15px;">
       <%= l commit.created_at %>
+      <% if current_user.already_liked?(commit.task, commit) %>
+        <%# link_to "#", style: "color: crimson", method: :delete do %>
+          <i class="fas fa-heart float-right"></i>
+        <%# end %>
+      <% else %>
+        <%= link_to task_commit_likes_path(commit.task, commit), method: :post, style: "color: gray" do %>
+          <i class="far fa-heart float-right"></i>
+        <% end %>
+      <% end %>
       <% if @task.user_id == current_user.id %>  
-        <%= link_to "#", "data-toggle": "modal", "data-Target": "#commitDestroyModal#{commit.id}", style: "color: gray" do %><i class="fas fa-trash-alt float-right" data-linkId="commit-destroy"></i><% end %>
-        <%= link_to edit_task_commit_path(commit.task, commit) do %><i class="fas fa-edit float-right" style="margin-right: 5px;" data-linkId="commit-edit"></i><% end %>
+        <%= link_to "#", "data-toggle": "modal", "data-Target": "#commitDestroyModal#{commit.id}", style: "color: gray" do %>
+          <i class="fas fa-trash-alt float-right" data-linkId="commit-destroy"></i>
+        <% end %>
+        <%= link_to edit_task_commit_path(commit.task, commit) do %>
+          <i class="fas fa-edit float-right" style="margin-right: 5px;" data-linkId="commit-edit"></i>
+        <% end %>
       <% end %>
     </p>
     <%= simple_format(h(commit.content)) %>
