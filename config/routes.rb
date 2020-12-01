@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :tasks, except: [:index] do
     resources :commits, only: [:create, :edit, :update, :destroy] do
-      resources :likes, only: [:create]
+      resource :likes, only: [:create, :destroy]
     end
     resources :messages, only: [:create, :destroy]
     resources :permissions, only: [:create, :destroy]
