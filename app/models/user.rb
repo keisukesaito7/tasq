@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :commits,  dependent: :delete_all
   has_many :messages, dependent: :delete_all
-  has_many :likes
+  has_many :likes, dependent: :delete_all
 
   def self.guest
     find_or_create_by!(email: 'guest1@gmail.com') do |user|
