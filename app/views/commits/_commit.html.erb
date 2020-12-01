@@ -14,7 +14,7 @@
     <%= simple_format(h(commit.content)) %>
     <% if current_user.already_liked?(commit.task, commit) %>
       <div class="likes_done" style="text-align: right;">
-        <%= link_to "#", style: "color: crimson; text-decoration: none;" do %>
+        <%= link_to task_commit_likes_path(commit.task, commit), style: "color: crimson; text-decoration: none;", method: :delete do %>
           <i class="fas fa-heart"></i>
         <% end %>
         <span style="color: crimson; line-height: 17px;"><%= commit.likes.count %></span>
