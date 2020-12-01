@@ -28,6 +28,6 @@ class User < ApplicationRecord
   end
 
   def already_liked?(task, commit)
-    self.likes.exists?(task_id: task.id, commit_id: commit.id)
+    likes.exists?(task_id: task.id, commit_id: commit.id)
   end
 end
