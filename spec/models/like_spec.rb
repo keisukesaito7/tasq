@@ -20,22 +20,22 @@ RSpec.describe Like, type: :model do
         @like_repeat.task = @like.task
         @like_repeat.commit = @like.commit
         @like_repeat.valid?
-        expect(@like_repeat.errors.full_messages).to include("Commitはすでに存在します")
+        expect(@like_repeat.errors.full_messages).to include("コミットはすでに存在します")
       end
       it 'ユーザーが紐付いていないといいねできない' do
         @like.user = nil
         @like.valid?
-        expect(@like.errors.full_messages).to include("Userを入力してください")
+        expect(@like.errors.full_messages).to include("ユーザーを入力してください")
       end
       it 'タスクが紐付いていないといいねできない' do
         @like.task = nil
         @like.valid?
-        expect(@like.errors.full_messages).to include("Taskを入力してください")
+        expect(@like.errors.full_messages).to include("タスクを入力してください")
       end
       it 'コミットが紐付いていないといいねできない' do
         @like.commit = nil
         @like.valid?
-        expect(@like.errors.full_messages).to include("Commitを入力してください")
+        expect(@like.errors.full_messages).to include("コミットを入力してください")
       end
     end
   end
