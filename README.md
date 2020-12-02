@@ -175,4 +175,4 @@ Ruby on Railsで制作しました。
 
 ## :pushpin: データベース設計
 
-[![Image from Gyazo](https://i.gyazo.com/3216179ab8c2b6bb96e40913a7712356.png)](https://gyazo.com/3216179ab8c2b6bb96e40913a7712356)
+[![Image from Gyazo](https://i.gyazo.com/3ae3dbf2037e33e6c6013ffdebccd0ef.png)](https://gyazo.com/3ae3dbf2037e33e6c6013ffdebccd0ef)
