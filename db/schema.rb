@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_27_045020) do
+ActiveRecord::Schema.define(version: 2020_11_30_090757) do
 
   create_table "commits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "content", null: false
@@ -20,6 +20,17 @@ ActiveRecord::Schema.define(version: 2020_10_27_045020) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["task_id"], name: "index_commits_on_task_id"
     t.index ["user_id"], name: "index_commits_on_user_id"
+  end
+
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "task_id"
+    t.bigint "commit_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["commit_id"], name: "index_likes_on_commit_id"
+    t.index ["task_id"], name: "index_likes_on_task_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -66,6 +77,9 @@ ActiveRecord::Schema.define(version: 2020_10_27_045020) do
 
   add_foreign_key "commits", "tasks"
   add_foreign_key "commits", "users"
+  add_foreign_key "likes", "commits"
+  add_foreign_key "likes", "tasks"
+  add_foreign_key "likes", "users"
   add_foreign_key "messages", "tasks"
   add_foreign_key "messages", "users"
   add_foreign_key "permissions", "tasks"

@@ -21,5 +21,10 @@ ja:
         task : タスク
       permission:
         user: ユーザー
-        task : タスク
+        task: タスク
         user_id: ユーザー
+      like:
+        user: ユーザー
+        task: タスク
+        commit: コミット
+        commit_id: コミット

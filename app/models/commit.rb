@@ -3,4 +3,5 @@ class Commit < ApplicationRecord
 
   belongs_to :user
   belongs_to :task
+  has_many :likes, dependent: :delete_all
 end

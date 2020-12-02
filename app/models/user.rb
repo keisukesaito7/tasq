@@ -9,8 +9,9 @@ class User < ApplicationRecord
   # レビュアーとしての許可証を削除
   has_many :permissions, dependent: :delete_all
   has_many :tasks, dependent: :destroy
-  has_many :commits,  dependent: :delete_all
+  has_many :likes, dependent: :delete_all
   has_many :messages, dependent: :delete_all
+  has_many :commits
 
   def self.guest
     find_or_create_by!(email: 'guest1@gmail.com') do |user|
@@ -24,5 +25,9 @@ class User < ApplicationRecord
       user.nickname = 'guest2'
       user.password = SecureRandom.urlsafe_base64
     end
+  end
+
+  def already_liked?(task, commit)
+    likes.exists?(task_id: task.id, commit_id: commit.id)
   end
 end
