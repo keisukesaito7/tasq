@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :like do
-    # factoryをoverwrite
+    association :user
+    association :task
+    association :commit
   end
 end
