@@ -1,5 +1,4 @@
 class CommitsController < ApplicationController
-  # before_action :authenticate_user!, only: [:craete, :edit, :update, :destroy]
   before_action :set_task, only: [:create, :edit, :update, :destroy]
   before_action :set_commit, only: [:edit, :update, :destroy]
   before_action :check_person, only: [:create, :edit, :update, :destroy]

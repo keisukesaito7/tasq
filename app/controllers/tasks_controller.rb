@@ -1,5 +1,4 @@
 class TasksController < ApplicationController
-  # before_action :authenticate_user!
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :check_permission, only: [:show]
   before_action :check_owner, only: [:edit, :update, :destroy]
