@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :check_permission, only: [:show]
-  before_action :check_owner, only: [:edit, :update, :destroy]
+  before_action :check_person, only: [:edit, :update, :destroy]
 
   def new
     @task = Task.new
@@ -68,7 +68,7 @@ class TasksController < ApplicationController
     end
   end
 
-  def check_owner
+  def check_person
     redirect_to root_path if @task.user_id != current_user.id
   end
 end
