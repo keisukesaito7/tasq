@@ -1,5 +1,5 @@
 class PermissionsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :destroy, :reviewer_destroy]
+  # before_action :authenticate_user!, only: [:create, :destroy, :reviewer_destroy]
   before_action :set_task, only: [:create, :destroy, :reviewer_destroy]
   before_action :check_owner, only: [:create, :destroy]
 

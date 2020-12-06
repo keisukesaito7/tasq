@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   before_action :set_task, only: [:create, :destroy]
   before_action :check_person, only: [:destroy]
 
