@@ -37,6 +37,11 @@ jobs:
         ./bin/rails db:migrate
     - name: Run Model Spec
       run: bundle exec rspec spec/models
+    - name: Archive code coverage results
+      uses: actions/upload-artifact@v2
+      with:
+        name: code-coverage-report
+        path: coverage
     - name: Github Actions notify to Slack
       uses: 8398a7/action-slack@v3
       with:
