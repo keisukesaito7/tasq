@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.6
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: root
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.6.5
+        bundler-cache: true
+    - name: Setup Rails
+      run: |
+        gem install bundler:2.1.4
+        bundle install --quiet --jobs 4 --retry 3
+    - name: Setup Database
+      env:
+        RAILS_ENV: test
+        MYSQL_ROOT_PASSWORD: root
+      run: |
+        cp config/database_ci.yml config/database.yml
+        ./bin/rails db:create
+        ./bin/rails db:migrate
+    - name: Run Model Spec
+      run: bundle exec rspec spec/models
+    - name: Github Actions notify to Slack
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+        author_name: 変更通知をお届けに上がりました！
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        MATRIX_CONTEXT: ${{ toJson(matrix) }}
+      if: always()
