@@ -46,7 +46,7 @@ jobs:
     - name: setup yarn
       run: |
         curl -sL https://deb.nodesource.com/setup_12.x | bash -
-        apt-get install -y nodejs
+        sudo apt-get install -y nodejs
         npm install -g yarn
         yarn install
     - name: Run System Spec
