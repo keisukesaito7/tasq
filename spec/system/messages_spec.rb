@@ -7,7 +7,7 @@ RSpec.describe 'メッセージ新規投稿', type: :system do
   end
 
   context 'メッセージ新規投稿ができるとき' do
-    it '正しい情報が入力されれば投稿されログが更新される' do
+    xit '正しい情報が入力されれば投稿されログが更新される' do
       # ログイン
       sign_in(@task.user)
       # マイページのタスクをクリック
@@ -24,7 +24,7 @@ RSpec.describe 'メッセージ新規投稿', type: :system do
   end
 
   context 'メッセージ新規投稿ができないとき' do
-    it '誤った情報では投稿できずにタスク詳細ページに戻ってくる' do
+    xit '誤った情報では投稿できずにタスク詳細ページに戻ってくる' do
       # ログイン
       sign_in(@task.user)
       # マイページのタスクをクリック
@@ -48,7 +48,7 @@ RSpec.describe 'メッセージ削除', type: :system do
   end
 
   context 'メッセージ削除ができるとき' do
-    it 'メッセージの削除ボタンをクリックすると削除できタスク詳細ページへ遷移する' do
+    xit 'メッセージの削除ボタンをクリックすると削除できタスク詳細ページへ遷移する' do
       # ログイン
       sign_in(@task.user)
       # マイページのタスクをクリック
