@@ -23,10 +23,23 @@ jobs:
       with:
         ruby-version: 2.6.5
         bundler-cache: true
-    - name: Setup Rails
+    - name: Install Chrome
+      run: |
+        wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+        echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+        sudo apt update -y
+        sudo apt install -y google-chrome-stable
+    - name: Setup Bundler
       run: |
         gem install bundler:2.1.4
         bundle install --quiet --jobs 4 --retry 3
+    - name: Setup Yarn
+      run: |
+        curl -sL https://deb.nodesource.com/setup_12.x | bash -
+        sudo apt-get update -qq
+        sudo apt-get install -y nodejs
+        npm install -g yarn
+        yarn install
     - name: Setup Database
       env:
         RAILS_ENV: test
@@ -35,20 +48,8 @@ jobs:
         cp config/database_ci.yml config/database.yml
         ./bin/rails db:create
         ./bin/rails db:migrate
-    - name: Install Chrome
-      run: |
-        wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-        echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
-        sudo apt update -y
-        sudo apt install -y google-chrome-stable
     - name: Run Model Spec
       run: bundle exec rspec spec/models
-    - name: setup yarn
-      run: |
-        curl -sL https://deb.nodesource.com/setup_12.x | bash -
-        sudo apt-get install -y nodejs
-        npm install -g yarn
-        yarn install
     - name: Run System Spec
       run: bundle exec rspec spec/system
     - name: Github Actions notify to Slack
