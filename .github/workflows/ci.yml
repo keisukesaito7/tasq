@@ -44,7 +44,11 @@ jobs:
     - name: Run Model Spec
       run: bundle exec rspec spec/models
     - name: Run System Spec
-      run: bundle exec rspec spec/system
+      run: |
+        rm -rf bin/webpack*
+        rails webpacker:install
+        RAILS_ENV=test bundle exec rails webpacker:compile
+        bundle exec rspec spec/system
     - name: Github Actions notify to Slack
       uses: 8398a7/action-slack@v3
       with:
