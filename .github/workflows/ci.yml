@@ -46,7 +46,7 @@ jobs:
     - name: Run System Spec
       run: |
         rm -rf bin/webpack*
-        rails webpacker:install
+        bundle exec rails webpacker:install
         RAILS_ENV=test bundle exec rails webpacker:compile
         bundle exec rspec spec/system
     - name: Github Actions notify to Slack
