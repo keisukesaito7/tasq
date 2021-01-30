@@ -18,12 +18,12 @@ jobs:
           MYSQL_ROOT_PASSWORD: root
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Ruby
+    - name: Install Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.6.5
         bundler-cache: true
-    - name: Setup Ruby
+    - name: Setup Rails
       run: |
         gem install bundler:2.1.4
         bundle install --quiet --jobs 4 --retry 3
@@ -35,8 +35,16 @@ jobs:
         cp config/database_ci.yml config/database.yml
         ./bin/rails db:create
         ./bin/rails db:migrate
-    - name: Run RSpec
+    - name: Install Chrome
+      run: |
+        wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+        echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list
+        apt update -y
+        apt install -y google-chrome-stable
+    - name: Run Model Spec
       run: bundle exec rspec spec/models
+    - name: Run System Spec
+      run: bundle exec rspec spec/system
     - name: Github Actions notify to Slack
       uses: 8398a7/action-slack@v3
       with:
