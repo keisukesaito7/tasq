@@ -46,10 +46,10 @@ jobs:
     - name: Run System Spec
       run: |
         rm -rf bin/webpack*
-        bundle exec rails webpacker:install
-        RAILS_ENV=test bundle exec rails webpacker:compile
-        RAILS_ENV=test bundle exec yarn install
-        RAILS_ENV=test bundle exec yarn upgrade
+        ./bin/rails webpacker:install
+        ./bin/rails webpacker:compile
+        yarn install
+        yarn upgrade
         bundle exec rspec spec/system
     - name: Github Actions notify to Slack
       uses: 8398a7/action-slack@v3
