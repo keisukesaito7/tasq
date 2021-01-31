@@ -47,7 +47,7 @@ RSpec.describe 'コミット編集', type: :system do
   end
 
   context 'コミット編集ができるとき' do
-    it '正しい情報が入力されれば更新されログが更新される' do
+    xit '正しい情報が入力されれば更新されログが更新される' do
       # ログイン
       sign_in(@commit.task.user)
       # マイページのタスクをクリック
@@ -66,7 +66,7 @@ RSpec.describe 'コミット編集', type: :system do
   end
 
   context 'コミット編集ができないとき' do
-    it '誤った情報が入力されれば更新されず編集ページに戻ってくる' do
+    xit '誤った情報が入力されれば更新されず編集ページに戻ってくる' do
       # ログイン
       sign_in(@commit.task.user)
       # マイページのタスクをクリック
@@ -89,7 +89,7 @@ RSpec.describe 'コミット削除', type: :system do
   end
 
   context 'コミット削除ができるとき' do
-    it 'コミットの削除ボタンをクリックすると削除できタスク詳細ページへ遷移する' do
+    xit 'コミットの削除ボタンをクリックすると削除できタスク詳細ページへ遷移する' do
       # ログイン
       sign_in(@commit.task.user)
       # マイページのタスクをクリック
