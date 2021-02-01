@@ -7,7 +7,13 @@ on:
     branches: [ develop ]
 
 jobs:
+  ci-skip-check:
+    runs-on: ubuntu-latest
+    if: "! contains(github.event.head_commit.message, '[ci skip]')"
+    steps:
+      - run: echo "${{ github.event.head_commit.message }}"
   test:
+    needs: ci-skip-check
     runs-on: ubuntu-latest
     services:
       mysql:
