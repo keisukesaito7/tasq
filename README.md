@@ -3,7 +3,7 @@
 課題解決に特化したタスク管理アプリです。  
 下記ページで公開中です。
 
-https://www.tasq.site/
+【2021/05 現在】こちらのアプリは公開を停止しました:bow:
 
 [![Image from Gyazo](https://i.gyazo.com/9b59673b50980d9de48725c42dd8cc39.jpg)](https://gyazo.com/9b59673b50980d9de48725c42dd8cc39)
 
