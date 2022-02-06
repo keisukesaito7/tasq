@@ -2,8 +2,8 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_11_30_090757) do
 
-  create_table "commits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "commits", charset: "utf8", force: :cascade do |t|
     t.text "content", null: false
     t.bigint "user_id"
     t.bigint "task_id"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_090757) do
     t.index ["user_id"], name: "index_commits_on_user_id"
   end
 
-  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "likes", charset: "utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "task_id"
     t.bigint "commit_id"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_090757) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "messages", charset: "utf8", force: :cascade do |t|
     t.text "text", null: false
     t.bigint "user_id"
     t.bigint "task_id"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_090757) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "permissions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "permissions", charset: "utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "task_id"
     t.datetime "created_at", precision: 6, null: false
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_090757) do
     t.index ["user_id"], name: "index_permissions_on_user_id"
   end
 
-  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "tasks", charset: "utf8", force: :cascade do |t|
     t.text "title", null: false
     t.text "purpose", null: false
     t.text "goal", null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_090757) do
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "nickname", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
