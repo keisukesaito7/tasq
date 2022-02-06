@@ -8,7 +8,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
 WORKDIR /tasq
 COPY Gemfile /tasq/Gemfile
 COPY Gemfile.lock /tasq/Gemfile.lock
-RUN gem install bundler:2.1.4 && \
+RUN gem install bundler:2.2.4 && \
     bundle install
 COPY . /tasq
 
