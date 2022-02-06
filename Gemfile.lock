@@ -326,7 +326,7 @@ DEPENDENCIES
   mysql2 (>= 0.4.4)
   pry-rails
   puma (~> 3.11)
-  rails (~> 6.0.3.6)
+  rails (~> 6.0.3)
   rails-i18n
   rspec-rails
   rubocop
