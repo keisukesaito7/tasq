@@ -63,19 +63,19 @@ jobs:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         MATRIX_CONTEXT: ${{ toJson(matrix) }}
       if: always()
-  # deploy:
-  #   if: github.ref == 'refs/heads/master'
-  #   needs: [ci-skip-check, test]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - name: setup Ruby
-  #       uses: ruby/setup-ruby@v1
-  #       with:
-  #         ruby-version: 2.7.5
-  #         bundler-cache: true
-  #     - name: deploy with Capistrano
-  #       uses: miloserdow/capistrano-deploy@master
-  #       with:
-  #         target: production
-  #         deploy_key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+#   deploy:
+#     if: github.ref == 'refs/heads/master'
+#     needs: [ci-skip-check, test]
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: setup Ruby
+#         uses: ruby/setup-ruby@v1
+#         with:
+#           ruby-version: 2.6.5
+#           bundler-cache: true
+#       - name: deploy with Capistrano
+#         uses: miloserdow/capistrano-deploy@master
+#         with:
+#           target: production
+#           deploy_key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
