@@ -1,4 +1,4 @@
-FROM ruby:2.6.5
+FROM ruby:2.7.5
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
@@ -8,7 +8,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
 WORKDIR /tasq
 COPY Gemfile /tasq/Gemfile
 COPY Gemfile.lock /tasq/Gemfile.lock
-RUN gem install bundler:2.1.4 && \
+RUN gem install bundler:2.2.4 && \
     bundle install
 COPY . /tasq
 
